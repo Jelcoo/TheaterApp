@@ -13,9 +13,7 @@ import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.models.User;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class LoginController {
     Database database;
