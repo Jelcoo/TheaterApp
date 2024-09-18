@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" fx:id="layout" xmlns="http://javafx.com/javafx/21">
-    <children>
-        <VBox spacing="10.0" style="-fx-background-color: #00325a;">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="80.0"/>
-            </padding>
-            <children>
-            </children>
-        </VBox>
-    </children>
-</HBox>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="87.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
+      <Text layoutX="35.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fantasic Cinema">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text fx:id="welcomeText" layoutX="35.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome [name]">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="loggedinAsText" layoutX="35.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are logged in as [role]" />
+      <Text fx:id="datetimeText" layoutX="35.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The current date and time is [DD-MM-YYYY HH:mm]" />
+   </children>
+</AnchorPane>

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class LoginController {
+    User loggedInUser;
     Database database;
     Stage stage;
     Scene scene;
@@ -27,7 +28,8 @@ public class LoginController {
     @FXML
     TextField password;
 
-    public LoginController(Database database, Stage stage) throws IOException {
+    public LoginController(User user, Database database, Stage stage) throws IOException {
+        this.loggedInUser = user;
         this.database = database;
         this.stage = stage;
 
@@ -45,12 +47,13 @@ public class LoginController {
         String password = this.password.getText();
 
         User userToLogin = validateUser(username, password);
-        if (userToLogin != null) {
-            HomeController homeController = new HomeController(database, stage);
-            homeController.show();
-        } else {
+        if (userToLogin == null) {
             messageText.setText("Username or password is incorrect");
+            return;
         }
+        loggedInUser = userToLogin;
+        HomeController homeController = new HomeController(loggedInUser, database, stage);
+        homeController.show();
     }
 
     public User validateUser(String username, String password) {
