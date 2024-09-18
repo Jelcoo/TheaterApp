@@ -1,5 +1,6 @@
 package me.jelco.theaterapp.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +46,18 @@ public class HomeController implements Initializable {
 
     public void show() {
         stage.setScene(scene);
+    }
+
+    public void onSalesClick(ActionEvent event) throws IOException {
+
+    }
+
+    public void onShowingsClick(ActionEvent event) throws IOException {
+
+    }
+
+    public void onTicketsClick(ActionEvent event) throws IOException {
+
     }
 
     @Override
