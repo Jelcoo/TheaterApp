@@ -44,7 +44,6 @@ public class LoginController {
     }
 
     public void show() {
-        stage.setTitle("Theater Manager - Login");
         if (layout.getChildren().size() > 1)
             layout.getChildren().remove(1);
         layout.getChildren().add(scene.getRoot());
@@ -60,7 +59,7 @@ public class LoginController {
             return;
         }
         loggedInUser = userToLogin;
-        HomeController homeController = new HomeController(loggedInUser, database, stage);
+        HomeController homeController = new HomeController(loggedInUser, database, layout);
         homeController.show();
     }
 

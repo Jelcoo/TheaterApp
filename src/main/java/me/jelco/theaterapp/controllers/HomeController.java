@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
@@ -23,8 +24,8 @@ import java.util.concurrent.TimeUnit;
 public class HomeController implements Initializable {
     User loggedInUser;
     Database database;
-    Stage stage;
     Scene scene;
+    VBox layout;
 
     @FXML
     Text welcomeText;
@@ -33,10 +34,10 @@ public class HomeController implements Initializable {
     @FXML
     Text datetimeText;
 
-    public HomeController(User user, Database database, Stage stage) throws IOException {
+    public HomeController(User user, Database database, VBox layout) throws IOException {
         this.loggedInUser = user;
         this.database = database;
-        this.stage = stage;
+        this.layout = layout;
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("home-view.fxml"));
         fxmlLoader.setController(this);
@@ -44,23 +45,9 @@ public class HomeController implements Initializable {
     }
 
     public void show() {
-        stage.setTitle("Theater Manager - Home");
-        stage.setScene(scene);
-    }
-
-    public void onSalesClick(ActionEvent event) throws IOException {
-        SalesController salesController = new SalesController(loggedInUser, database, stage);
-        salesController.show();
-    }
-
-    public void onShowingsClick(ActionEvent event) throws IOException {
-        ShowingsController showingsController = new ShowingsController(loggedInUser, database, stage);
-        showingsController.show();
-    }
-
-    public void onTicketsClick(ActionEvent event) throws IOException {
-        TicketsController ticketsController = new TicketsController(loggedInUser, database, stage);
-        ticketsController.show();
+        if (layout.getChildren().size() > 1)
+            layout.getChildren().remove(1);
+        layout.getChildren().add(scene.getRoot());
     }
 
     @Override

@@ -30,17 +30,17 @@ public class LayoutController implements Initializable {
     }
 
     public void onSalesClick(ActionEvent event) throws IOException {
-        SalesController salesController = new SalesController(loggedInUser, database, stage);
+        SalesController salesController = new SalesController(loggedInUser, database, layout);
         salesController.show();
     }
 
     public void onShowingsClick(ActionEvent event) throws IOException {
-        ShowingsController showingsController = new ShowingsController(loggedInUser, database, stage);
+        ShowingsController showingsController = new ShowingsController(loggedInUser, database, layout);
         showingsController.show();
     }
 
     public void onTicketsClick(ActionEvent event) throws IOException {
-        TicketsController ticketsController = new TicketsController(loggedInUser, database, stage);
+        TicketsController ticketsController = new TicketsController(loggedInUser, database, layout);
         ticketsController.show();
     }
 
