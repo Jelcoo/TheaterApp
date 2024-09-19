@@ -49,15 +49,18 @@ public class HomeController implements Initializable {
     }
 
     public void onSalesClick(ActionEvent event) throws IOException {
-
+        SalesController salesController = new SalesController(loggedInUser, database, stage);
+        salesController.show();
     }
 
     public void onShowingsClick(ActionEvent event) throws IOException {
-
+        ShowingsController showingsController = new ShowingsController(loggedInUser, database, stage);
+        showingsController.show();
     }
 
     public void onTicketsClick(ActionEvent event) throws IOException {
-
+        TicketsController ticketsController = new TicketsController(loggedInUser, database, stage);
+        ticketsController.show();
     }
 
     @Override
