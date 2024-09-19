@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import me.jelco.theaterapp.controllers.LoginController;
+import me.jelco.theaterapp.controllers.LayoutController;
 import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.models.User;
 
@@ -20,8 +20,10 @@ public class TheaterApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        LoginController loginController = new LoginController(loggedInUser, database, stage);
-        loginController.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("layout.fxml"));
+        fxmlLoader.setController(new LayoutController(loggedInUser, database, stage));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
         stage.show();
     }
 

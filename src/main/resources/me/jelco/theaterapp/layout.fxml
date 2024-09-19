@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="layout" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="90.0" prefWidth="1009.0" style="-fx-background-color: DODGERBLUE;">
+         <children>
+            <Text layoutX="35.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fantasic Cinema">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <Button focusTraversable="false" layoutX="863.0" layoutY="47.0" mnemonicParsing="false" onAction="#onSalesClick" prefHeight="35.0" prefWidth="123.0" text="View sales history" />
+            <Button focusTraversable="false" layoutX="739.0" layoutY="47.0" mnemonicParsing="false" onAction="#onShowingsClick" prefHeight="35.0" prefWidth="123.0" text="Manage showings" />
+            <Button focusTraversable="false" layoutX="615.0" layoutY="47.0" mnemonicParsing="false" onAction="#onTicketsClick" prefHeight="35.0" prefWidth="123.0" text="Sell tickets" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

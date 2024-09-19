@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
@@ -20,6 +23,7 @@ public class LoginController {
     Database database;
     Stage stage;
     Scene scene;
+    VBox layout;
 
     @FXML
     Text messageText;
@@ -28,10 +32,11 @@ public class LoginController {
     @FXML
     TextField password;
 
-    public LoginController(User user, Database database, Stage stage) throws IOException {
+    public LoginController(User user, Database database, Stage stage, VBox layout) throws IOException {
         this.loggedInUser = user;
         this.database = database;
         this.stage = stage;
+        this.layout = layout;
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("login-view.fxml"));
         fxmlLoader.setController(this);
@@ -40,7 +45,9 @@ public class LoginController {
 
     public void show() {
         stage.setTitle("Theater Manager - Login");
-        stage.setScene(scene);
+        if (layout.getChildren().size() > 1)
+            layout.getChildren().remove(1);
+        layout.getChildren().add(scene.getRoot());
     }
 
     public void onLoginButtonClick(ActionEvent event) throws IOException {
