@@ -39,6 +39,7 @@ public class LoginController {
     }
 
     public void show() {
+        stage.setTitle("Theater Manager - Login");
         stage.setScene(scene);
     }
 

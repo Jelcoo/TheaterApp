@@ -22,7 +22,6 @@ public class TheaterApplication extends Application {
     public void start(Stage stage) throws IOException {
         LoginController loginController = new LoginController(loggedInUser, database, stage);
         loginController.show();
-        stage.setTitle("Theater Manager");
         stage.show();
     }
 
