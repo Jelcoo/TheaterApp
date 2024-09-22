@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox fx:id="layout" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -13,9 +15,10 @@
                   <Font size="35.0" />
                </font>
             </Text>
-            <Button focusTraversable="false" layoutX="863.0" layoutY="47.0" mnemonicParsing="false" onAction="#onSalesClick" prefHeight="35.0" prefWidth="123.0" text="View sales history" />
-            <Button focusTraversable="false" layoutX="739.0" layoutY="47.0" mnemonicParsing="false" onAction="#onShowingsClick" prefHeight="35.0" prefWidth="123.0" text="Manage showings" />
-            <Button focusTraversable="false" layoutX="615.0" layoutY="47.0" mnemonicParsing="false" onAction="#onTicketsClick" prefHeight="35.0" prefWidth="123.0" text="Sell tickets" />
+            <Button fx:id="salesButton" focusTraversable="false" layoutX="863.0" layoutY="47.0" mnemonicParsing="false" onAction="#onSalesClick" prefHeight="35.0" prefWidth="123.0" text="View sales history" />
+            <Button fx:id="showingsButton" focusTraversable="false" layoutX="739.0" layoutY="47.0" mnemonicParsing="false" onAction="#onShowingsClick" prefHeight="35.0" prefWidth="123.0" text="Manage showings" />
+            <Button fx:id="ticketsButton" focusTraversable="false" layoutX="615.0" layoutY="47.0" mnemonicParsing="false" onAction="#onTicketsClick" prefHeight="35.0" prefWidth="123.0" text="Sell tickets" />
+            <Button fx:id="homeButton" focusTraversable="false" layoutX="491.0" layoutY="47.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="35.0" prefWidth="123.0" text="Home" />
          </children>
       </AnchorPane>
    </children>

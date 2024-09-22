@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
 import me.jelco.theaterapp.data.Database;
+import me.jelco.theaterapp.models.Role;
 import me.jelco.theaterapp.models.User;
 
 import java.io.IOException;
@@ -59,6 +61,7 @@ public class LoginController {
             return;
         }
         loggedInUser = userToLogin;
+
         HomeController homeController = new HomeController(loggedInUser, database, layout);
         homeController.show();
     }
