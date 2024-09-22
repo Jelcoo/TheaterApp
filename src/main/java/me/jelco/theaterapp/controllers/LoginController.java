@@ -8,19 +8,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
 import me.jelco.theaterapp.data.Database;
+import me.jelco.theaterapp.data.UserLogin;
 import me.jelco.theaterapp.models.Role;
 import me.jelco.theaterapp.models.User;
 
 import java.io.IOException;
-import java.util.List;
 
 public class LoginController {
-    User loggedInUser;
+    UserLogin userLogin;
     Database database;
-    Stage stage;
     Scene scene;
     VBox layout;
 
@@ -36,10 +34,9 @@ public class LoginController {
     Button showingsButton;
     Button salesButton;
 
-    public LoginController(User user, Database database, Stage stage, VBox layout) throws IOException {
-        this.loggedInUser = user;
+    public LoginController(UserLogin userLogin, Database database, VBox layout) throws IOException {
+        this.userLogin = userLogin;
         this.database = database;
-        this.stage = stage;
         this.layout = layout;
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("login-view.fxml"));
@@ -62,27 +59,16 @@ public class LoginController {
         String username = this.username.getText();
         String password = this.password.getText();
 
-        User userToLogin = validateUser(username, password);
+        User userToLogin = userLogin.validateUser(username, password);
         if (userToLogin == null) {
             messageText.setText("Username or password is incorrect");
             return;
         }
-        loggedInUser = userToLogin;
 
-        HomeController homeController = new HomeController(loggedInUser, database, layout);
+        HomeController homeController = new HomeController(userLogin, database, layout);
         homeController.show();
 
-        showActionControls(loggedInUser.getRole());
-    }
-
-    public User validateUser(String username, String password) {
-        List<User> users = database.getUsers();
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return user;
-            }
-        }
-        return null;
+        showActionControls(userToLogin.getRole());
     }
 
     private void showActionControls(Role role) {

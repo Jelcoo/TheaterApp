@@ -1,15 +1,14 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
 import me.jelco.theaterapp.data.Database;
+import me.jelco.theaterapp.data.UserLogin;
 import me.jelco.theaterapp.models.User;
 
 import java.io.IOException;
@@ -22,6 +21,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class HomeController implements Initializable {
+    UserLogin userLogin;
     User loggedInUser;
     Database database;
     Scene scene;
@@ -34,10 +34,16 @@ public class HomeController implements Initializable {
     @FXML
     Text datetimeText;
 
-    public HomeController(User user, Database database, VBox layout) throws IOException {
-        this.loggedInUser = user;
+    public HomeController(UserLogin userLogin, Database database, VBox layout) throws IOException {
+        this.userLogin = userLogin;
         this.database = database;
         this.layout = layout;
+
+        this.loggedInUser = userLogin.getLoggedInUser();
+        if (this.loggedInUser == null) {
+            LoginController loginController = new LoginController(userLogin, database, layout);
+            loginController.show();
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("home-view.fxml"));
         fxmlLoader.setController(this);
