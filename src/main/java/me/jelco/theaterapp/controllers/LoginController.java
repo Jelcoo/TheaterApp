@@ -3,12 +3,9 @@ package me.jelco.theaterapp.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,6 +31,11 @@ public class LoginController {
     @FXML
     TextField password;
 
+    Button homeButton;
+    Button ticketsButton;
+    Button showingsButton;
+    Button salesButton;
+
     public LoginController(User user, Database database, Stage stage, VBox layout) throws IOException {
         this.loggedInUser = user;
         this.database = database;
@@ -43,6 +45,11 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("login-view.fxml"));
         fxmlLoader.setController(this);
         this.scene = new Scene(fxmlLoader.load(), 1000, 700);
+
+        homeButton = (Button) this.layout.lookup("#homeButton");
+        ticketsButton = (Button) this.layout.lookup("#ticketsButton");
+        showingsButton = (Button) this.layout.lookup("#showingsButton");
+        salesButton = (Button) this.layout.lookup("#salesButton");
     }
 
     public void show() {
@@ -64,6 +71,8 @@ public class LoginController {
 
         HomeController homeController = new HomeController(loggedInUser, database, layout);
         homeController.show();
+
+        showActionControls(loggedInUser.getRole());
     }
 
     public User validateUser(String username, String password) {
@@ -74,5 +83,17 @@ public class LoginController {
             }
         }
         return null;
+    }
+
+    private void showActionControls(Role role) {
+        if (role == Role.Management) {
+            homeButton.setVisible(true);
+            ticketsButton.setVisible(true);
+            showingsButton.setVisible(true);
+            salesButton.setVisible(true);
+        } else if (role == Role.Sales) {
+            homeButton.setVisible(true);
+            ticketsButton.setVisible(true);
+        }
     }
 }
