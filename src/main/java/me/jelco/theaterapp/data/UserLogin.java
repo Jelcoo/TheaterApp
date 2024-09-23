@@ -8,12 +8,13 @@ public class UserLogin {
     Database database;
 
     User loggedInUser;
-    public User getLoggedInUser() {
-        return loggedInUser;
-    }
 
     public UserLogin(Database database) {
         this.database = database;
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
     }
 
     public User validateUser(String username, String password) {

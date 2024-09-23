@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="610.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Text layoutX="435.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" dwrappingWidth="130.0">
+        <Text layoutX="435.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="130.0">
             <font>
                 <Font size="52.0"/>
             </font>
