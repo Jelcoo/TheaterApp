@@ -27,4 +27,8 @@ public class Database {
         showings.add(new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00")));
         showings.add(new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00")));
     }
+
+    public void deleteShowing(Showing showing) {
+        showings.remove(showing);
+    }
 }

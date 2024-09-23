@@ -7,9 +7,9 @@ import me.jelco.theaterapp.tools.FormattingTools;
 import java.time.LocalDateTime;
 
 public class Showing {
-    String title;
-    LocalDateTime startTime;
-    LocalDateTime endTime;
+    private String title;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     public Showing(String title, LocalDateTime startTime, LocalDateTime endTime) {
         this.title = title;

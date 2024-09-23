@@ -1,11 +1,15 @@
 package me.jelco.theaterapp.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -27,9 +31,16 @@ public class ShowingsController implements Initializable {
     VBox layout;
 
     private ObservableList<Showing> showings;
+    Showing selectedShowing;
 
     @FXML
     TableView showsTable;
+    @FXML
+    Button addButton;
+    @FXML
+    Button editButton;
+    @FXML
+    Button deleteButton;
 
     public ShowingsController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         this.userLogin = userLogin;
@@ -57,5 +68,26 @@ public class ShowingsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showings = FXCollections.observableArrayList(database.getShowings());
         showsTable.setItems(showings);
+
+        showsTable.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Showing>) (observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                editButton.setDisable(false);
+                deleteButton.setDisable(false);
+                selectedShowing = newValue;
+            }
+        });
+    }
+
+    public void onAddClick(ActionEvent event) {
+
+    }
+    public void onEditClick(ActionEvent event) {
+
+    }
+    public void onDeleteClick(ActionEvent event) {
+        if (selectedShowing != null) {
+            database.deleteShowing(selectedShowing);
+            showings.remove(selectedShowing);
+        }
     }
 }
