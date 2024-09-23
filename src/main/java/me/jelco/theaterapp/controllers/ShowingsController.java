@@ -1,7 +1,6 @@
 package me.jelco.theaterapp.controllers;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
 import me.jelco.theaterapp.TheaterApplication;
 import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.data.UserLogin;
@@ -41,6 +40,8 @@ public class ShowingsController implements Initializable {
     Button editButton;
     @FXML
     Button deleteButton;
+    @FXML
+    Text errorLabel;
 
     public ShowingsController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         this.userLogin = userLogin;
@@ -85,9 +86,18 @@ public class ShowingsController implements Initializable {
 
     }
     public void onDeleteClick(ActionEvent event) {
-        if (selectedShowing != null) {
-            database.deleteShowing(selectedShowing);
-            showings.remove(selectedShowing);
+        if (selectedShowing == null) return;
+        if (!database.getShowingSales(selectedShowing).isEmpty()) {
+            setError("Cannot delete: there are already tickets sold for this showing");
+            return;
         }
+
+        database.deleteShowing(selectedShowing);
+        showings.remove(selectedShowing);
+    }
+
+    private void setError(String error) {
+        errorLabel.setText(error);
+        errorLabel.setVisible(true);
     }
 }
