@@ -1,0 +1,124 @@
+package me.jelco.theaterapp.controllers;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import me.jelco.theaterapp.TheaterApplication;
+import me.jelco.theaterapp.models.Showing;
+import me.jelco.theaterapp.tools.FormattingTools;
+import me.jelco.theaterapp.tools.UITools;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+public class ShowingsDialogController implements Initializable {
+    @FXML
+    TextField titleField;
+    @FXML
+    DatePicker startDateField;
+    @FXML
+    TextField startTimeField;
+    @FXML
+    DatePicker endDateField;
+    @FXML
+    TextField endTimeField;
+    @FXML
+    Text errorLabel;
+
+    private Showing showing;
+    public Showing getShowing() {
+        return showing;
+    }
+
+    public ShowingsDialogController(Showing showing) {
+        this.showing = showing;
+    }
+
+    public void show() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("showings-dialog.fxml"));
+        fxmlLoader.setController(this);
+
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage dialog = new Stage();
+        dialog.setScene(scene);
+        dialog.setTitle("Create/edit showing");
+        dialog.showAndWait();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (showing != null) {
+            titleField.setText(showing.getTitle());
+            startDateField.setValue(showing.getStartTime().toLocalDate());
+            startTimeField.setText(FormattingTools.formatTime(showing.getStartTime()));
+            endDateField.setValue(showing.getEndTime().toLocalDate());
+            endTimeField.setText(FormattingTools.formatTime(showing.getEndTime()));
+        }
+    }
+
+    public void onSaveClick(ActionEvent event) {
+        Showing constructedShowing = constructShowing();
+        if (constructedShowing == null) return;
+        showing = constructedShowing;
+
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    private Showing constructShowing() {
+        String title = titleField.getText();
+        if (!isValidTitle(title)) {
+            UITools.setError(errorLabel, "The title cannot be empty");
+            return null;
+        }
+
+        LocalDate startDate = startDateField.getValue();
+        if (startDate == null) {
+            UITools.setError(errorLabel, "The start date is not valid");
+            return null;
+        }
+        String startTimeValue = startTimeField.getText();
+        if (!isValidTime(startTimeValue)) {
+            UITools.setError(errorLabel, "The start time is not valid");
+            return null;
+        }
+        LocalTime startTime = formatTime(startTimeValue);
+
+        LocalDate endDate = endDateField.getValue();
+        if (endDate == null) {
+            UITools.setError(errorLabel, "The end date is not valid");
+            return null;
+        }
+        String endTimeValue = endTimeField.getText();
+        if (!isValidTime(endTimeValue)) {
+            UITools.setError(errorLabel, "The end time is not valid");
+            return null;
+        }
+        LocalTime endTime = formatTime(endTimeValue);
+
+        return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime));
+    }
+
+    private boolean isValidTitle(String title) {
+        return !title.isEmpty();
+    }
+    private boolean isValidTime(String time) {
+        return time.matches("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
+    }
+    private LocalTime formatTime(String time) {
+        return LocalTime.parse(time);
+    }
+}

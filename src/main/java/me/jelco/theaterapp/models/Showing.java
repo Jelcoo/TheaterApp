@@ -20,16 +20,25 @@ public class Showing {
     public String getTitle() {
         return title;
     }
+    public void setTitle(String title) {
+        this.title = title;
+    }
     public LocalDateTime getStartTime() {
         return startTime;
     }
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
     public StringProperty startProperty() {
-        return new SimpleStringProperty(FormattingTools.formatTime(startTime));
+        return new SimpleStringProperty(FormattingTools.formatDateTime(startTime));
     }
     public LocalDateTime getEndTime() {
         return endTime;
     }
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
     public StringProperty endProperty() {
-        return new SimpleStringProperty(FormattingTools.formatTime(endTime));
+        return new SimpleStringProperty(FormattingTools.formatDateTime(endTime));
     }
 }

@@ -62,6 +62,9 @@ public class Database {
         sales.add(new Sale(LocalDateTime.parse("2024-10-02T17:02:00"), "Erwin de Vries", sale2Tickets, rm1004));
     }
 
+    public void createShowing(Showing showing) {
+        showings.add(showing);
+    }
     public void deleteShowing(Showing showing) {
         showings.remove(showing);
     }

@@ -17,9 +17,11 @@ import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.data.UserLogin;
 import me.jelco.theaterapp.models.Showing;
 import me.jelco.theaterapp.models.User;
+import me.jelco.theaterapp.tools.UITools;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ShowingsController implements Initializable {
@@ -80,15 +82,16 @@ public class ShowingsController implements Initializable {
     }
 
     public void onAddClick(ActionEvent event) {
-
+        showEditDialog(null);
     }
     public void onEditClick(ActionEvent event) {
-
+        if (selectedShowing == null) return;
+        showEditDialog(selectedShowing);
     }
     public void onDeleteClick(ActionEvent event) {
         if (selectedShowing == null) return;
         if (!database.getShowingSales(selectedShowing).isEmpty()) {
-            setError("Cannot delete: there are already tickets sold for this showing");
+            UITools.setError(errorLabel, "Cannot delete: there are already tickets sold for this showing");
             return;
         }
 
@@ -96,8 +99,38 @@ public class ShowingsController implements Initializable {
         showings.remove(selectedShowing);
     }
 
-    private void setError(String error) {
-        errorLabel.setText(error);
-        errorLabel.setVisible(true);
+    private void showEditDialog(Showing showing) {
+        try {
+            ShowingsDialogController showingsDialogController = new ShowingsDialogController(showing);
+            showingsDialogController.show();
+
+            Showing dialogShowing = showingsDialogController.getShowing();
+            if (showing == null && dialogShowing != null) {
+                showings.add(dialogShowing);
+                database.createShowing(dialogShowing);
+            } else if (dialogShowing != null) {
+                int showingIndex = showings.indexOf(selectedShowing);
+                editShowing(showing, dialogShowing);
+                if (showingIndex != -1) {
+                    showings.set(showingIndex, dialogShowing);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void editShowing(Showing oldShowing, Showing newShowing) {
+        if (!Objects.equals(oldShowing.getTitle(), newShowing.getTitle())) {
+            selectedShowing.setTitle(newShowing.getTitle());
+        }
+
+        if (!Objects.equals(oldShowing.getStartTime(), newShowing.getStartTime())) {
+            selectedShowing.setStartTime(newShowing.getStartTime());
+        }
+
+        if (!Objects.equals(oldShowing.getEndTime(), newShowing.getEndTime())) {
+            selectedShowing.setEndTime(newShowing.getEndTime());
+        }
     }
 }
