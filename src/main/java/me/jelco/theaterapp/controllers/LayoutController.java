@@ -20,14 +20,6 @@ public class LayoutController implements Initializable {
 
     @FXML
     VBox layout;
-    @FXML
-    Button homeButton;
-    @FXML
-    Button ticketsButton;
-    @FXML
-    Button showingsButton;
-    @FXML
-    Button salesButton;
 
     public LayoutController(UserLogin userLogin, Database database, Stage stage) throws IOException {
         this.userLogin = userLogin;
@@ -63,9 +55,5 @@ public class LayoutController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        homeButton.setVisible(false);
-        ticketsButton.setVisible(false);
-        showingsButton.setVisible(false);
-        salesButton.setVisible(false);
     }
 }

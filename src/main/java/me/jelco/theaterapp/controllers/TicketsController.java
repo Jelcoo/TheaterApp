@@ -27,10 +27,6 @@ public class TicketsController implements Initializable {
         this.layout = layout;
 
         this.loggedInUser = userLogin.getLoggedInUser();
-        if (this.loggedInUser == null) {
-            LoginController loginController = new LoginController(userLogin, database, layout);
-            loginController.show();
-        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("tickets-view.fxml"));
         fxmlLoader.setController(this);

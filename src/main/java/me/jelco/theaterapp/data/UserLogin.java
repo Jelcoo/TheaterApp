@@ -30,4 +30,8 @@ public class UserLogin {
     private void setLoggedInUser(User user) {
         loggedInUser = user;
     }
+
+    public void logoutUser() {
+        loggedInUser = null;
+    }
 }

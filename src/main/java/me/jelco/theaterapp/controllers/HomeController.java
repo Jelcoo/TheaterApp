@@ -1,5 +1,6 @@
 package me.jelco.theaterapp.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,10 +41,6 @@ public class HomeController implements Initializable {
         this.layout = layout;
 
         this.loggedInUser = userLogin.getLoggedInUser();
-        if (this.loggedInUser == null) {
-            LoginController loginController = new LoginController(userLogin, database, layout);
-            loginController.show();
-        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("home-view.fxml"));
         fxmlLoader.setController(this);
@@ -68,5 +65,12 @@ public class HomeController implements Initializable {
             String formattedDateTime = now.format(formatter);
             datetimeText.setText("The current date and time is " + formattedDateTime);
         }, 0, 1, TimeUnit.SECONDS);
+    }
+
+    public void onLogoutClick(ActionEvent event) throws IOException {
+        userLogin.logoutUser();
+
+        LoginController loginController = new LoginController(userLogin, database, layout);
+        loginController.show();
     }
 }
