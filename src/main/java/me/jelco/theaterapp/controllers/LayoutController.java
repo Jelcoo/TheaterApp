@@ -32,9 +32,9 @@ public class LayoutController implements Initializable {
         homeController.show();
     }
 
-    public void onSalesClick(ActionEvent event) throws IOException {
-        SalesController salesController = new SalesController(userLogin, database, layout);
-        salesController.show();
+    public void onTicketsClick(ActionEvent event) throws IOException {
+        TicketsController ticketsController = new TicketsController(userLogin, database, layout);
+        ticketsController.show();
     }
 
     public void onShowingsClick(ActionEvent event) throws IOException {
@@ -42,9 +42,9 @@ public class LayoutController implements Initializable {
         showingsController.show();
     }
 
-    public void onTicketsClick(ActionEvent event) throws IOException {
-        TicketsController ticketsController = new TicketsController(userLogin, database, layout);
-        ticketsController.show();
+    public void onSalesClick(ActionEvent event) throws IOException {
+        SalesController salesController = new SalesController(userLogin, database, layout);
+        salesController.show();
     }
 
     @Override
