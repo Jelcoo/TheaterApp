@@ -15,13 +15,17 @@ public class Database {
     public List<Showing> getShowings() {
         return showings;
     }
-    private List<Ticket> tickets = new ArrayList<>();
-    public List<Ticket> getTickets() {
-        return tickets;
+    private List<Seat> seats = new ArrayList<>();
+    public List<Seat> getTickets() {
+        return seats;
     }
     private List<Sale> sales = new ArrayList<>();
     public List<Sale> getSales() {
         return sales;
+    }
+    private List<Room> rooms = new ArrayList<>();
+    public List<Room> getRooms() {
+        return rooms;
     }
 
     public Database() {
@@ -29,37 +33,48 @@ public class Database {
         users.add(new User("sales", "test", Role.Sales));
         users.add(new User("manager", "test", Role.Management));
 
-        // showings
-        Showing rm1004 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00"));
-        Showing rm1005 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00"));
-        showings.add(rm1004);
-        showings.add(rm1005);
+        // rooms
+        Room room1 = new Room("Room 1", 6, 12);
+        Room room2 = new Room("Room 2", 5, 20);
+        rooms.add(room1);
+        rooms.add(room2);
 
         // tickets
-        Ticket ticket29 = new Ticket(2, 9);
-        Ticket ticket210 = new Ticket(2, 10);
-        Ticket ticket34 = new Ticket(3, 4);
-        Ticket ticket35 = new Ticket(3, 5);
-        Ticket ticket36 = new Ticket(3, 6);
-        Ticket ticket37 = new Ticket(3, 7);
-        tickets.add(ticket29);
-        tickets.add(ticket210);
-        tickets.add(ticket34);
-        tickets.add(ticket35);
-        tickets.add(ticket36);
-        tickets.add(ticket37);
+        Seat seat29 = new Seat(2, 9);
+        Seat seat210 = new Seat(2, 10);
+        Seat seat34 = new Seat(3, 4);
+        Seat seat35 = new Seat(3, 5);
+        Seat seat36 = new Seat(3, 6);
+        Seat seat37 = new Seat(3, 7);
+        seats.add(seat29);
+        seats.add(seat210);
+        seats.add(seat34);
+        seats.add(seat35);
+        seats.add(seat36);
+        seats.add(seat37);
 
         // sales
-        List<Ticket> sale1Tickets = new ArrayList<>();
-        sale1Tickets.add(ticket34);
-        sale1Tickets.add(ticket35);
-        sale1Tickets.add(ticket36);
-        sale1Tickets.add(ticket37);
-        sales.add(new Sale(LocalDateTime.parse("2024-10-02T16:35:00"), "Wim Wittenburg", sale1Tickets, rm1004));
-        List<Ticket> sale2Tickets = new ArrayList<>();
-        sale2Tickets.add(ticket29);
-        sale2Tickets.add(ticket210);
-        sales.add(new Sale(LocalDateTime.parse("2024-10-02T17:02:00"), "Erwin de Vries", sale2Tickets, rm1004));
+        List<Seat> sale1Seats = new ArrayList<>();
+        sale1Seats.add(seat34);
+        sale1Seats.add(seat35);
+        sale1Seats.add(seat36);
+        sale1Seats.add(seat37);
+        Sale sale1 = new Sale(LocalDateTime.parse("2024-10-02T16:35:00"), "Wim Wittenburg", sale1Seats);
+        List<Seat> sale2Seats = new ArrayList<>();
+        sale2Seats.add(seat29);
+        sale2Seats.add(seat210);
+        Sale sale2 = new Sale(LocalDateTime.parse("2024-10-02T17:02:00"), "Erwin de Vries", sale2Seats);
+        sales.add(sale1);
+        sales.add(sale2);
+
+        // showings
+        List<Sale> rm1004Sales = new ArrayList<>();
+        rm1004Sales.add(sale1);
+        rm1004Sales.add(sale2);
+        Showing rm1004 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00"), room1, rm1004Sales);
+        Showing rm1005 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00"), room1, new ArrayList<>());
+        showings.add(rm1004);
+        showings.add(rm1005);
     }
 
     public void createShowing(Showing showing) {
@@ -67,14 +82,5 @@ public class Database {
     }
     public void deleteShowing(Showing showing) {
         showings.remove(showing);
-    }
-    public List<Sale> getShowingSales(Showing showing) {
-        List<Sale> filteredSales = new ArrayList<>();
-        for (Sale sale : sales) {
-            if (sale.getShowing() == showing) {
-                filteredSales.add(sale);
-            }
-        }
-        return filteredSales;
     }
 }

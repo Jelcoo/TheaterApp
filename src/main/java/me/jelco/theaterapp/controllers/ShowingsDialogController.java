@@ -5,13 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
+import me.jelco.theaterapp.data.Database;
+import me.jelco.theaterapp.models.Room;
 import me.jelco.theaterapp.models.Showing;
 import me.jelco.theaterapp.tools.FormattingTools;
 import me.jelco.theaterapp.tools.UITools;
@@ -21,12 +20,15 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ShowingsDialogController implements Initializable {
     @FXML
     TextField titleField;
+    @FXML
+    ComboBox roomSelector;
     @FXML
     DatePicker startDateField;
     @FXML
@@ -38,12 +40,15 @@ public class ShowingsDialogController implements Initializable {
     @FXML
     Text errorLabel;
 
+    private Database database;
     private Showing showing;
     public Showing getShowing() {
         return showing;
     }
 
-    public ShowingsDialogController(Showing showing) {
+
+    public ShowingsDialogController(Database database, Showing showing) {
+        this.database = database;
         this.showing = showing;
     }
 
@@ -60,8 +65,12 @@ public class ShowingsDialogController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        List<Room> rooms = database.getRooms();
+        roomSelector.getItems().addAll(rooms);
+
         if (showing != null) {
             titleField.setText(showing.getTitle());
+            roomSelector.setValue(showing.getRoom());
             startDateField.setValue(showing.getStartTime().toLocalDate());
             startTimeField.setText(FormattingTools.formatTime(showing.getStartTime()));
             endDateField.setValue(showing.getEndTime().toLocalDate());
@@ -109,7 +118,9 @@ public class ShowingsDialogController implements Initializable {
         }
         LocalTime endTime = formatTime(endTimeValue);
 
-        return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime));
+        Room room = database.getRooms().getFirst();
+
+        return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime), room, new ArrayList<>());
     }
 
     private boolean isValidTitle(String title) {

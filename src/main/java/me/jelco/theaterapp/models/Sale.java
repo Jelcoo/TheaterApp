@@ -6,14 +6,12 @@ import java.util.List;
 public class Sale {
     private LocalDateTime soldDate;
     private String customer;
-    private List<Ticket> tickets;
-    private Showing showing;
+    private List<Seat> seats;
 
-    public Sale(LocalDateTime soldDate, String customer, List<Ticket> tickets, Showing showing) {
+    public Sale(LocalDateTime soldDate, String customer, List<Seat> seats) {
         this.soldDate = soldDate;
         this.customer = customer;
-        this.tickets = tickets;
-        this.showing = showing;
+        this.seats = seats;
     }
 
     public LocalDateTime getSoldDate() {
@@ -22,10 +20,7 @@ public class Sale {
     public String getCustomer() {
         return customer;
     }
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-    public Showing getShowing() {
-        return showing;
+    public List<Seat> getTickets() {
+        return seats;
     }
 }

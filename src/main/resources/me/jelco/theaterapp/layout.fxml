@@ -19,7 +19,7 @@
             <FlowPane alignment="CENTER" columnHalignment="RIGHT" layoutX="492.0" layoutY="21.0" prefHeight="47.0" prefWidth="493.0">
                <children>
                   <Button fx:id="homeButton" focusTraversable="false" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="35.0" prefWidth="123.0" text="Home" />
-                  <Button fx:id="ticketsButton" focusTraversable="false" mnemonicParsing="false" onAction="#onTicketsClick" prefHeight="35.0" prefWidth="123.0" text="Sell tickets" />
+                  <Button fx:id="ticketsButton" focusTraversable="false" mnemonicParsing="false" onAction="#onTicketsClick" prefHeight="35.0" prefWidth="123.0" text="Sell seats" />
                   <Button fx:id="showingsButton" focusTraversable="false" mnemonicParsing="false" onAction="#onShowingsClick" prefHeight="35.0" prefWidth="123.0" text="Manage showings" />
                   <Button fx:id="salesButton" focusTraversable="false" mnemonicParsing="false" onAction="#onSalesClick" prefHeight="35.0" prefWidth="123.0" text="View sales history" />
                </children>

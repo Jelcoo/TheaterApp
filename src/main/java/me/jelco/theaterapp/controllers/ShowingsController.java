@@ -90,7 +90,7 @@ public class ShowingsController implements Initializable {
     }
     public void onDeleteClick(ActionEvent event) {
         if (selectedShowing == null) return;
-        if (!database.getShowingSales(selectedShowing).isEmpty()) {
+        if (!selectedShowing.getSales().isEmpty()) {
             UITools.setError(errorLabel, "Cannot delete: there are already tickets sold for this showing");
             return;
         }
@@ -101,7 +101,7 @@ public class ShowingsController implements Initializable {
 
     private void showEditDialog(Showing showing) {
         try {
-            ShowingsDialogController showingsDialogController = new ShowingsDialogController(showing);
+            ShowingsDialogController showingsDialogController = new ShowingsDialogController(database, showing);
             showingsDialogController.show();
 
             Showing dialogShowing = showingsDialogController.getShowing();

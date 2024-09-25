@@ -1,10 +1,10 @@
 package me.jelco.theaterapp.models;
 
-public class Ticket {
+public class Seat {
     private int row;
     private int seat;
 
-    public Ticket(int row, int seat) {
+    public Seat(int row, int seat) {
         this.row = row;
         this.seat = seat;
     }
