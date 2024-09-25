@@ -118,9 +118,9 @@ public class ShowingsDialogController implements Initializable {
         }
         LocalTime endTime = formatTime(endTimeValue);
 
-        Room room = database.getRooms().getFirst();
+        Room room = (Room) roomSelector.getValue();
 
-        return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime), room, new ArrayList<>());
+        return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime), room, showing != null ? showing.getSales() : new ArrayList<>());
     }
 
     private boolean isValidTitle(String title) {

@@ -125,6 +125,10 @@ public class ShowingsController implements Initializable {
             selectedShowing.setTitle(newShowing.getTitle());
         }
 
+        if (!Objects.equals(oldShowing.getRoom(), newShowing.getRoom())) {
+            selectedShowing.setRoom(newShowing.getRoom());
+        }
+
         if (!Objects.equals(oldShowing.getStartTime(), newShowing.getStartTime())) {
             selectedShowing.setStartTime(newShowing.getStartTime());
         }
