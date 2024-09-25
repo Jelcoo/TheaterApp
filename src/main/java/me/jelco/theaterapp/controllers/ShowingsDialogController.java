@@ -104,6 +104,7 @@ public class ShowingsDialogController implements Initializable {
         String endTimeValue = endTimeField.getText();
         if (!isValidTime(endTimeValue)) { UITools.setError(errorLabel, "The end time is not valid"); return null; }
         LocalTime endTime = formatTime(endTimeValue);
+        if (endTime.isBefore(startTime)) { UITools.setError(errorLabel, "The end date/time is before the start date"); return null; }
 
         Room room = (Room) roomSelector.getValue();
         if (room == null) { UITools.setError(errorLabel, "The room is not valid"); return null; }
