@@ -89,36 +89,24 @@ public class ShowingsDialogController implements Initializable {
 
     private Showing constructShowing() {
         String title = titleField.getText();
-        if (!isValidTitle(title)) {
-            UITools.setError(errorLabel, "The title cannot be empty");
-            return null;
-        }
+        if (!isValidTitle(title)) { UITools.setError(errorLabel, "The title cannot be empty"); return null; }
 
         LocalDate startDate = startDateField.getValue();
-        if (startDate == null) {
-            UITools.setError(errorLabel, "The start date is not valid");
-            return null;
-        }
+        if (startDate == null) { UITools.setError(errorLabel, "The start date is not valid"); return null; }
+
         String startTimeValue = startTimeField.getText();
-        if (!isValidTime(startTimeValue)) {
-            UITools.setError(errorLabel, "The start time is not valid");
-            return null;
-        }
+        if (!isValidTime(startTimeValue)) { UITools.setError(errorLabel, "The start time is not valid"); return null; }
         LocalTime startTime = formatTime(startTimeValue);
 
         LocalDate endDate = endDateField.getValue();
-        if (endDate == null) {
-            UITools.setError(errorLabel, "The end date is not valid");
-            return null;
-        }
+        if (endDate == null) { UITools.setError(errorLabel, "The end date is not valid"); return null; }
+
         String endTimeValue = endTimeField.getText();
-        if (!isValidTime(endTimeValue)) {
-            UITools.setError(errorLabel, "The end time is not valid");
-            return null;
-        }
+        if (!isValidTime(endTimeValue)) { UITools.setError(errorLabel, "The end time is not valid"); return null; }
         LocalTime endTime = formatTime(endTimeValue);
 
         Room room = (Room) roomSelector.getValue();
+        if (room == null) { UITools.setError(errorLabel, "The room is not valid"); return null; }
 
         return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime), room, showing != null ? showing.getSales() : new ArrayList<>());
     }
