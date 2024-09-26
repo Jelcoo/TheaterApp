@@ -44,6 +44,8 @@ public class TicketsSelectorController implements Initializable {
     ListView<Seat> seatList;
     @FXML
     TextField customerInput;
+    @FXML
+    Button sellButton;
 
     public TicketsSelectorController(UserLogin userLogin, Database database, VBox layout, Showing showing) throws IOException {
         this.userLogin = userLogin;
@@ -79,6 +81,7 @@ public class TicketsSelectorController implements Initializable {
         int roomColumns = showingRoom.getColumns();
 
         initSeatSelector(roomRows, roomColumns);
+        updateSellLabel();
     }
     private void initSeatSelector(int roomRows, int roomColumns) {
         setGridSize(roomRows, roomColumns + 1);
@@ -142,9 +145,15 @@ public class TicketsSelectorController implements Initializable {
                 button.setBackground(Background.fill(Paint.valueOf("#ffff00")));
                 saleSeats.add(buttonSeat);
             }
+            updateSellLabel();
         });
 
         return button;
+    }
+    public void updateSellLabel() {
+        int ticketSize = saleSeats.size();
+        sellButton.setDisable(ticketSize == 0);
+        sellButton.setText("Sell " + ticketSize + " tickets");
     }
 
     public void onSellClick(ActionEvent event) throws IOException {
