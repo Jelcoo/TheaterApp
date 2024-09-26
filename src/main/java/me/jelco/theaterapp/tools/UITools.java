@@ -7,7 +7,4 @@ public class UITools {
         errorLabel.setText(error);
         errorLabel.setVisible(true);
     }
-    public static void unsetError(Text errorLabel) {
-        errorLabel.setVisible(false);
-    }
 }

@@ -1,6 +1,5 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import me.jelco.theaterapp.TheaterApplication;
 import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.data.UserLogin;
@@ -31,11 +29,10 @@ public class TicketsController implements Initializable {
     Scene scene;
     VBox layout;
 
-    private ObservableList<Showing> showings;
     Showing selectedShowing;
 
     @FXML
-    TableView showsTable;
+    TableView<Showing> showsTable;
     @FXML
     Button selectButton;
     @FXML
@@ -61,10 +58,10 @@ public class TicketsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showings = FXCollections.observableArrayList(database.getShowings());
+        ObservableList<Showing> showings = FXCollections.observableArrayList(database.getShowings());
         showsTable.setItems(showings);
 
-        showsTable.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Showing>) (observable, oldValue, newValue) -> {
+        showsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 selectButton.setDisable(false);
                 selectedShowing = newValue;

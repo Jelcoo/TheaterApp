@@ -1,6 +1,5 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,9 +34,7 @@ public class ShowingsController implements Initializable {
     Showing selectedShowing;
 
     @FXML
-    TableView showsTable;
-    @FXML
-    Button addButton;
+    TableView<Showing> showsTable;
     @FXML
     Button editButton;
     @FXML
@@ -68,7 +65,7 @@ public class ShowingsController implements Initializable {
         showings = FXCollections.observableArrayList(database.getShowings());
         showsTable.setItems(showings);
 
-        showsTable.getSelectionModel().selectedItemProperty().addListener((ChangeListener<Showing>) (observable, oldValue, newValue) -> {
+        showsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 editButton.setDisable(false);
                 deleteButton.setDisable(false);

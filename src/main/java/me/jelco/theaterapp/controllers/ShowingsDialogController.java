@@ -28,7 +28,7 @@ public class ShowingsDialogController implements Initializable {
     @FXML
     TextField titleField;
     @FXML
-    ComboBox roomSelector;
+    ComboBox<Room> roomSelector;
     @FXML
     DatePicker startDateField;
     @FXML
@@ -110,7 +110,7 @@ public class ShowingsDialogController implements Initializable {
         if (endDateTime.isBefore(startDateTime)) { UITools.setError(errorLabel, "The end date/time is before the start date/time"); return null; }
         if (endDateTime.equals(startDateTime)) { UITools.setError(errorLabel, "The end date/time cannot be the same as start date/time"); return null; }
 
-        Room room = (Room) roomSelector.getValue();
+        Room room = roomSelector.getValue();
         if (room == null) { UITools.setError(errorLabel, "The room is not valid"); return null; }
 
         return new Showing(title, startDateTime, endDateTime, room, showing != null ? showing.getSales() : new ArrayList<>());
