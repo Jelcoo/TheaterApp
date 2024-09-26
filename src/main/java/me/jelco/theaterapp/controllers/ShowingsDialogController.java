@@ -104,12 +104,16 @@ public class ShowingsDialogController implements Initializable {
         String endTimeValue = endTimeField.getText();
         if (!isValidTime(endTimeValue)) { UITools.setError(errorLabel, "The end time is not valid"); return null; }
         LocalTime endTime = formatTime(endTimeValue);
-        if (endTime.isBefore(startTime)) { UITools.setError(errorLabel, "The end date/time is before the start date"); return null; }
+
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+        if (endDateTime.isBefore(startDateTime)) { UITools.setError(errorLabel, "The end date/time is before the start date/time"); return null; }
+        if (endDateTime.equals(startDateTime)) { UITools.setError(errorLabel, "The end date/time cannot be the same as start date/time"); return null; }
 
         Room room = (Room) roomSelector.getValue();
         if (room == null) { UITools.setError(errorLabel, "The room is not valid"); return null; }
 
-        return new Showing(title, LocalDateTime.of(startDate, startTime), LocalDateTime.of(endDate, endTime), room, showing != null ? showing.getSales() : new ArrayList<>());
+        return new Showing(title, startDateTime, endDateTime, room, showing != null ? showing.getSales() : new ArrayList<>());
     }
 
     private boolean isValidTitle(String title) {
