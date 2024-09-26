@@ -73,6 +73,8 @@ public class TicketsController implements Initializable {
         });
     }
 
-    public void onSelectClick(ActionEvent event) {
+    public void onSelectClick(ActionEvent event) throws IOException {
+        TicketsSelectorController ticketsSelectorController = new TicketsSelectorController(userLogin, database, layout, selectedShowing);
+        ticketsSelectorController.show();
     }
 }
