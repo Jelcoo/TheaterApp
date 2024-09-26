@@ -15,6 +15,9 @@ public class Seat {
     public void setRow(int row) {
         this.row = row;
     }
+    public int getSeat() {
+        return seat;
+    }
 
     @Override
     public String toString() {

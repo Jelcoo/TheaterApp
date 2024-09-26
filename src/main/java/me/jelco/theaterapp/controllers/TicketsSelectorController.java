@@ -116,7 +116,7 @@ public class TicketsSelectorController implements Initializable {
     }
     private boolean seatIsOccupied(Seat seat) {
         for (Seat occupiedSeat : occupiedSeats) {
-            if (occupiedSeat.equals(seat)) {
+            if (occupiedSeat.getRow() == seat.getRow() && occupiedSeat.getSeat() == seat.getSeat()) {
                 return true;
             }
         }
@@ -133,22 +133,21 @@ public class TicketsSelectorController implements Initializable {
         button.setUserData(buttonSeat);
 
         if (seatIsOccupied(buttonSeat)) {
-            button.setDisable(true);
             button.setBackground(Background.fill(Paint.valueOf("#ff0000")));
         } else {
             button.setBackground(Background.fill(Paint.valueOf("#00ff00")));
-        }
 
-        button.setOnAction(actionEvent -> {
-            if (saleSeats.contains(buttonSeat)) {
-                button.setBackground(Background.fill(Paint.valueOf("#00ff00")));
-                saleSeats.remove(buttonSeat);
-            } else {
-                button.setBackground(Background.fill(Paint.valueOf("#ffff00")));
-                saleSeats.add(buttonSeat);
-            }
-            updateSellLabel();
-        });
+            button.setOnAction(actionEvent -> {
+                if (saleSeats.contains(buttonSeat)) {
+                    button.setBackground(Background.fill(Paint.valueOf("#00ff00")));
+                    saleSeats.remove(buttonSeat);
+                } else {
+                    button.setBackground(Background.fill(Paint.valueOf("#ffff00")));
+                    saleSeats.add(buttonSeat);
+                }
+                updateSellLabel();
+            });
+        }
 
         return button;
     }
