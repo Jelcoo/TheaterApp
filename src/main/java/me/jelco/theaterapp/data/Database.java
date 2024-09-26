@@ -15,14 +15,6 @@ public class Database {
     public List<Showing> getShowings() {
         return showings;
     }
-    private List<Seat> seats = new ArrayList<>();
-    public List<Seat> getTickets() {
-        return seats;
-    }
-    private List<Sale> sales = new ArrayList<>();
-    public List<Sale> getSales() {
-        return sales;
-    }
     private List<Room> rooms = new ArrayList<>();
     public List<Room> getRooms() {
         return rooms;
@@ -46,12 +38,11 @@ public class Database {
         Seat seat35 = new Seat(3, 5);
         Seat seat36 = new Seat(3, 6);
         Seat seat37 = new Seat(3, 7);
-        seats.add(seat29);
-        seats.add(seat210);
-        seats.add(seat34);
-        seats.add(seat35);
-        seats.add(seat36);
-        seats.add(seat37);
+
+        // showings
+        List<Sale> rm1004Sales = new ArrayList<>();
+        Showing rm1004 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00"), room1, rm1004Sales);
+        Showing rm1005 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00"), room1, new ArrayList<>());
 
         // sales
         List<Seat> sale1Seats = new ArrayList<>();
@@ -59,20 +50,13 @@ public class Database {
         sale1Seats.add(seat35);
         sale1Seats.add(seat36);
         sale1Seats.add(seat37);
-        Sale sale1 = new Sale(LocalDateTime.parse("2024-10-02T16:35:00"), "Wim Wittenburg", sale1Seats);
+        Sale sale1 = new Sale(rm1004.getTitle(), LocalDateTime.parse("2024-10-02T16:35:00"), "Wim Wittenburg", sale1Seats);
         List<Seat> sale2Seats = new ArrayList<>();
         sale2Seats.add(seat29);
         sale2Seats.add(seat210);
-        Sale sale2 = new Sale(LocalDateTime.parse("2024-10-02T17:02:00"), "Erwin de Vries", sale2Seats);
-        sales.add(sale1);
-        sales.add(sale2);
-
-        // showings
-        List<Sale> rm1004Sales = new ArrayList<>();
-        rm1004Sales.add(sale1);
-        rm1004Sales.add(sale2);
-        Showing rm1004 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00"), room1, rm1004Sales);
-        Showing rm1005 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00"), room1, new ArrayList<>());
+        Sale sale2 = new Sale(rm1004.getTitle(), LocalDateTime.parse("2024-10-02T17:02:00"), "Erwin de Vries", sale2Seats);
+        rm1004.addSale(sale1);
+        rm1004.addSale(sale2);
         showings.add(rm1004);
         showings.add(rm1005);
     }

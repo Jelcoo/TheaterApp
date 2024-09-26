@@ -164,7 +164,7 @@ public class TicketsSelectorController implements Initializable {
 
     public void onSellClick(ActionEvent event) throws IOException {
         String customerName = customerInput.getText();
-        Sale sale = new Sale(LocalDateTime.now(), customerName, saleSeats);
+        Sale sale = new Sale(selectedShowing.getTitle(), LocalDateTime.now(), customerName, saleSeats);
         selectedShowing.addSale(sale);
         returnToHome();
     }
