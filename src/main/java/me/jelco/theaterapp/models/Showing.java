@@ -59,6 +59,9 @@ public class Showing {
     public List<Sale> getSales() {
         return sales;
     }
+    public void addSale(Sale sale) {
+        sales.add(sale);
+    }
 
     public StringProperty roomProperty() {
         return new SimpleStringProperty(room.getName() + " (" + (this.room.getSeats() - this.calculateOccupiedSeats()) + "/" + room.getSeats() + " seats)");

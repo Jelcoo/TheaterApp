@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -21,6 +22,7 @@ import me.jelco.theaterapp.tools.FormattingTools;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -152,12 +154,20 @@ public class TicketsSelectorController implements Initializable {
     }
     public void updateSellLabel() {
         int ticketSize = saleSeats.size();
-        sellButton.setDisable(ticketSize == 0);
+        String customerName = customerInput.getText();
+        sellButton.setDisable(ticketSize == 0 || customerName.isEmpty());
         sellButton.setText("Sell " + ticketSize + " tickets");
     }
 
-    public void onSellClick(ActionEvent event) throws IOException {
+    public void onCustomerInput(KeyEvent key) {
+        updateSellLabel();
+    }
 
+    public void onSellClick(ActionEvent event) throws IOException {
+        String customerName = customerInput.getText();
+        Sale sale = new Sale(LocalDateTime.now(), customerName, saleSeats);
+        selectedShowing.addSale(sale);
+        returnToHome();
     }
 
     public void onCancelClick(ActionEvent event) throws IOException {
