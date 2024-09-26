@@ -15,4 +15,9 @@ public class Seat {
     public void setRow(int row) {
         this.row = row;
     }
+
+    @Override
+    public String toString() {
+        return "Row: " + row + ", Seat: " + seat;
+    }
 }

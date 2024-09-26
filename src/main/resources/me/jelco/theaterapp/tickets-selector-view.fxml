@@ -21,7 +21,7 @@
         <Text fx:id="selectedText" layoutX="35.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No showing selected" />
       <GridPane fx:id="seatSelector" layoutX="35.0" layoutY="85.0" prefHeight="389.0" prefWidth="705.0">
       </GridPane>
-      <ListView fx:id="seatList" disable="true" layoutX="765.0" layoutY="85.0" prefHeight="389.0" prefWidth="200.0" />
+      <ListView fx:id="seatList" layoutX="765.0" layoutY="85.0" prefHeight="389.0" prefWidth="200.0" />
       <TextField fx:id="customerInput" layoutX="35.0" layoutY="504.0" prefHeight="25.0" prefWidth="705.0" promptText="Customer name" />
       <Button fx:id="sellButton" layoutX="35.0" layoutY="555.0" mnemonicParsing="false" onAction="#onSellClick" text="Sell x tickets">
          <font>

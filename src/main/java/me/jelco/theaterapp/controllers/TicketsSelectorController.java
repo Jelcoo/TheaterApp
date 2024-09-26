@@ -11,18 +11,18 @@ import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import me.jelco.theaterapp.TheaterApplication;
 import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.data.UserLogin;
-import me.jelco.theaterapp.models.Room;
-import me.jelco.theaterapp.models.Seat;
-import me.jelco.theaterapp.models.Showing;
-import me.jelco.theaterapp.models.User;
+import me.jelco.theaterapp.models.*;
 import me.jelco.theaterapp.tools.FormattingTools;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TicketsSelectorController implements Initializable {
@@ -32,6 +32,8 @@ public class TicketsSelectorController implements Initializable {
     Scene scene;
     VBox layout;
 
+    private List<Seat> occupiedSeats = new ArrayList<>();
+    private ObservableList<Seat> saleSeats = FXCollections.observableArrayList();
     Showing selectedShowing;
 
     @FXML
@@ -66,10 +68,19 @@ public class TicketsSelectorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectedText.setText("Selected: " + FormattingTools.formatDateTime(selectedShowing.getStartTime()) + " - " + selectedShowing.getTitle());
 
+        seatList.setItems(saleSeats);
+
+        for (Sale sale : selectedShowing.getSales()) {
+            occupiedSeats.addAll(sale.getTickets());
+        }
+
         Room showingRoom = selectedShowing.getRoom();
         int roomRows = showingRoom.getRows();
         int roomColumns = showingRoom.getColumns();
 
+        initSeatSelector(roomRows, roomColumns);
+    }
+    private void initSeatSelector(int roomRows, int roomColumns) {
         setGridSize(roomRows, roomColumns + 1);
         for (int i = 0; i < roomRows; i++) {
             for (int j = 0; j < roomColumns + 1; j++) {
@@ -79,7 +90,7 @@ public class TicketsSelectorController implements Initializable {
                     seatSelector.add(rowLabel, 0, i);
                     continue;
                 }
-                seatSelector.add(getSeatButton(j), j, i);
+                seatSelector.add(getSeatButton(i, j), j, i);
             }
         }
     }
@@ -98,12 +109,40 @@ public class TicketsSelectorController implements Initializable {
             seatSelector.getColumnConstraints().add(columnConstraints);
         }
     }
-    private Button getSeatButton(int seatNumber) {
+    private boolean seatIsOccupied(Seat seat) {
+        for (Seat occupiedSeat : occupiedSeats) {
+            if (occupiedSeat.equals(seat)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private Button getSeatButton(int seatRow, int seatNumber) {
+        Seat buttonSeat = new Seat(seatRow + 1, seatNumber);
+
         Button button = new Button();
         button.setText(String.valueOf(seatNumber));
         button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         GridPane.setHgrow(button, Priority.ALWAYS);
         GridPane.setVgrow(button, Priority.ALWAYS);
+        button.setUserData(buttonSeat);
+
+        if (seatIsOccupied(buttonSeat)) {
+            button.setDisable(true);
+            button.setBackground(Background.fill(Paint.valueOf("#ff0000")));
+        } else {
+            button.setBackground(Background.fill(Paint.valueOf("#00ff00")));
+        }
+
+        button.setOnAction(actionEvent -> {
+            if (saleSeats.contains(buttonSeat)) {
+                button.setBackground(Background.fill(Paint.valueOf("#00ff00")));
+                saleSeats.remove(buttonSeat);
+            } else {
+                button.setBackground(Background.fill(Paint.valueOf("#ffff00")));
+                saleSeats.add(buttonSeat);
+            }
+        });
 
         return button;
     }
