@@ -2,11 +2,12 @@ package me.jelco.theaterapp.data;
 
 import me.jelco.theaterapp.models.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Database {
+public class Database implements Serializable {
     private List<User> users = new ArrayList<>();
     public List<User> getUsers() {
         return users;

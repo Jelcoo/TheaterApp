@@ -7,20 +7,19 @@ import javafx.stage.Stage;
 import me.jelco.theaterapp.controllers.LayoutController;
 import me.jelco.theaterapp.data.Database;
 import me.jelco.theaterapp.data.UserLogin;
+import me.jelco.theaterapp.tools.IOTools;
 
-import java.io.IOException;
+import java.io.*;
 
 public class TheaterApplication extends Application {
     Database database;
     UserLogin userLogin;
 
-    public TheaterApplication() {
-        database = new Database();
-        userLogin = new UserLogin(database);
-    }
-
     @Override
     public void start(Stage stage) throws IOException {
+        database = IOTools.getDatabase();
+        userLogin = new UserLogin(database);
+
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("layout.fxml"));
         fxmlLoader.setController(new LayoutController(userLogin, database, stage));
         Scene scene = new Scene(fxmlLoader.load());
@@ -34,6 +33,6 @@ public class TheaterApplication extends Application {
 
     @Override
     public void stop() {
-        // STOP
+        IOTools.saveDatabase(database);
     }
 }

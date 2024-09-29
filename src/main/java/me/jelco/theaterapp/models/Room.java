@@ -1,6 +1,8 @@
 package me.jelco.theaterapp.models;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
     private String name;
     private int rows;
     private int columns;

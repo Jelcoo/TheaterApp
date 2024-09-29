@@ -4,10 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import me.jelco.theaterapp.tools.FormattingTools;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Showing {
+public class Showing implements Serializable {
     private String title;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
