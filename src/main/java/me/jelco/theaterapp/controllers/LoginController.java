@@ -1,12 +1,15 @@
 package me.jelco.theaterapp.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import me.jelco.theaterapp.TheaterApplication;
@@ -31,6 +34,8 @@ public class LoginController implements Initializable {
     TextField username;
     @FXML
     TextField password;
+    @FXML
+    Button loginButton;
 
     Button homeButton;
     Button ticketsButton;
@@ -51,6 +56,12 @@ public class LoginController implements Initializable {
         if (layout.getChildren().size() > 1)
             layout.getChildren().remove(1);
         layout.getChildren().add(scene.getRoot());
+
+        layout.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                loginButton.fire();
+            }
+        });
     }
 
     @Override

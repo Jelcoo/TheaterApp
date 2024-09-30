@@ -14,6 +14,6 @@
         <TextField layoutX="424.0" layoutY="244.0" prefWidth="150.0" promptText="Username" fx:id="username" />
         <PasswordField layoutX="424.0" layoutY="277.0" prefWidth="150.0" promptText="Password" fx:id="password" />
         <Text layoutX="424.0" layoutY="320" fill="#ff0000" fx:id="messageText" />
-        <Button layoutX="424.0" layoutY="330.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" onAction="#onLoginButtonClick" text="Login" />
+        <Button layoutX="424.0" layoutY="330.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" onAction="#onLoginButtonClick" text="Login" fx:id="loginButton" />
     </children>
 </AnchorPane>
