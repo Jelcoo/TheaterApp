@@ -10,33 +10,34 @@ public class IOTools {
     public static void saveDatabase(Database database) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DBFILE))) {
             oos.writeObject(database);
+            System.out.println("Database saved successfully.");
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Het bestand kan niet worden gevonden.");
+            System.out.println("The file cannot be found: " + fnfe.getMessage());
         } catch (IOException ioe) {
-            throw new RuntimeException(ioe);
+            System.out.println("Error during writing database: " + ioe.getMessage());
         }
     }
+
     public static boolean databaseExists() {
         return DBFILE.exists();
     }
+
     public static Database getDatabase() {
         Database database = new Database();
-        if (!databaseExists()) return database;
+        if (!databaseExists()) {
+            System.out.println("Database file does not exist. Returning new Database instance.");
+            return database;
+        }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DBFILE))) {
-            while (true) {
-                try {
-                    database = (Database) ois.readObject();
-                } catch (EOFException eofe) {
-                    break; // break out of the loop
-                } catch (ClassNotFoundException e) {
-                    break;
-                }
-            }
+            database = (Database) ois.readObject();
+            System.out.println("Database loaded successfully.");
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Het bestand kan niet worden gevonden.");
+            System.out.println("The file cannot be found: " + fnfe.getMessage());
         } catch (IOException ioe) {
-            throw new RuntimeException(ioe);
+            System.out.println("Error during reading database: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Class not found while reading database: " + cnfe.getMessage());
         }
         return database;
     }
