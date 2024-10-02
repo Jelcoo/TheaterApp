@@ -1,7 +1,7 @@
 package me.jelco.theaterapp.tools;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.*;
+import java.time.format.*;
 
 public class FormattingTools {
     public static String formatDateTime(LocalDateTime time) {

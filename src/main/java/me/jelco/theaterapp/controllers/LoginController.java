@@ -1,26 +1,19 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import me.jelco.theaterapp.TheaterApplication;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.data.UserLogin;
-import me.jelco.theaterapp.models.Role;
-import me.jelco.theaterapp.models.User;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
+import me.jelco.theaterapp.*;
+import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.models.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class LoginController implements Initializable {
     UserLogin userLogin;

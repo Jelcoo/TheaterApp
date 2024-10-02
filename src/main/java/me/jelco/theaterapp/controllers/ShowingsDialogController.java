@@ -1,28 +1,20 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import me.jelco.theaterapp.TheaterApplication;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.models.Room;
-import me.jelco.theaterapp.models.Showing;
-import me.jelco.theaterapp.tools.FormattingTools;
-import me.jelco.theaterapp.tools.UITools;
+import javafx.scene.text.*;
+import javafx.stage.*;
+import me.jelco.theaterapp.*;
+import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.models.*;
+import me.jelco.theaterapp.tools.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.net.*;
+import java.time.*;
+import java.util.*;
 
 public class ShowingsDialogController implements Initializable {
     @FXML

@@ -1,13 +1,12 @@
 package me.jelco.theaterapp;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import me.jelco.theaterapp.controllers.LayoutController;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.data.UserLogin;
-import me.jelco.theaterapp.tools.IOTools;
+import javafx.application.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.stage.*;
+import me.jelco.theaterapp.controllers.*;
+import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.tools.*;
 
 import java.io.*;
 

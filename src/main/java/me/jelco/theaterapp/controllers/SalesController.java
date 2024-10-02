@@ -1,25 +1,17 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
-import me.jelco.theaterapp.TheaterApplication;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.data.UserLogin;
-import me.jelco.theaterapp.models.Sale;
-import me.jelco.theaterapp.models.Showing;
-import me.jelco.theaterapp.models.User;
+import javafx.collections.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import me.jelco.theaterapp.*;
+import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.models.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class SalesController implements Initializable {
     UserLogin userLogin;

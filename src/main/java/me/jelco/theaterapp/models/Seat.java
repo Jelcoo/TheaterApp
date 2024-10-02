@@ -1,6 +1,6 @@
 package me.jelco.theaterapp.models;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Seat implements Serializable {
     private int row;

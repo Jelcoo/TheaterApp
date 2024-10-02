@@ -1,16 +1,14 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.data.UserLogin;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+import me.jelco.theaterapp.data.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 public class LayoutController implements Initializable {
     UserLogin userLogin;

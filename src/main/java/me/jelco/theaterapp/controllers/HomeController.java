@@ -1,25 +1,20 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import me.jelco.theaterapp.TheaterApplication;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.data.UserLogin;
-import me.jelco.theaterapp.models.User;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
+import me.jelco.theaterapp.*;
+import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.models.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.io.*;
+import java.net.*;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class HomeController implements Initializable {
     UserLogin userLogin;

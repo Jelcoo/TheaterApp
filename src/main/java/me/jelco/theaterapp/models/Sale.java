@@ -1,12 +1,11 @@
 package me.jelco.theaterapp.models;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import me.jelco.theaterapp.tools.FormattingTools;
+import javafx.beans.property.*;
+import me.jelco.theaterapp.tools.*;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.io.*;
+import java.time.*;
+import java.util.*;
 
 public class Sale implements Serializable {
     private String showingTitle;
