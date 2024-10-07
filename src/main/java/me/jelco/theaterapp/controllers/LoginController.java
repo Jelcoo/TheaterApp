@@ -85,18 +85,22 @@ public class LoginController implements Initializable {
 
     private void showActionControls(Role role) {
         if (role == Role.Management) {
-            homeButton.setVisible(true);
-            ticketsButton.setVisible(true);
-            showingsButton.setVisible(true);
-            salesButton.setVisible(true);
+            toggleButton(homeButton, true);
+            toggleButton(ticketsButton, true);
+            toggleButton(showingsButton, true);
+            toggleButton(salesButton, true);
         } else if (role == Role.Sales) {
-            homeButton.setVisible(true);
-            ticketsButton.setVisible(true);
+            toggleButton(homeButton, true);
+            toggleButton(ticketsButton, true);
         } else {
-            homeButton.setVisible(false);
-            ticketsButton.setVisible(false);
-            showingsButton.setVisible(false);
-            salesButton.setVisible(false);
+            toggleButton(homeButton, false);
+            toggleButton(ticketsButton, false);
+            toggleButton(showingsButton, false);
+            toggleButton(salesButton, false);
         }
+    }
+    private void toggleButton(Button button, boolean toggle) {
+        button.setVisible(toggle);
+        button.setManaged(toggle);
     }
 }
