@@ -11,12 +11,12 @@ import java.net.*;
 import java.util.*;
 
 public class LayoutController implements Initializable {
-    UserLogin userLogin;
-    Database database;
-    Stage stage;
+    private UserLogin userLogin;
+    private Database database;
+    private Stage stage;
 
     @FXML
-    VBox layout;
+    private VBox layout;
 
     public LayoutController(UserLogin userLogin, Database database, Stage stage) {
         this.userLogin = userLogin;

@@ -1,6 +1,5 @@
 package me.jelco.theaterapp.models;
 
-import javafx.beans.property.*;
 import me.jelco.theaterapp.tools.*;
 
 import java.io.*;
@@ -39,21 +38,21 @@ public class Showing implements Serializable {
     public LocalDateTime getStartTime() {
         return startTime;
     }
+    public String getFormattedStartTime() {
+        return FormattingTools.formatDateTime(startTime);
+    }
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
-    }
-    public StringProperty startProperty() {
-        return new SimpleStringProperty(FormattingTools.formatDateTime(startTime));
     }
 
     public LocalDateTime getEndTime() {
         return endTime;
     }
+    public String getFormattedEndTime() {
+        return FormattingTools.formatDateTime(endTime);
+    }
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
-    }
-    public StringProperty endProperty() {
-        return new SimpleStringProperty(FormattingTools.formatDateTime(endTime));
     }
 
     public List<Sale> getSales() {
@@ -63,8 +62,8 @@ public class Showing implements Serializable {
         sales.add(sale);
     }
 
-    public StringProperty roomProperty() {
-        return new SimpleStringProperty(room.getName() + " (" + (this.room.getSeats() - this.calculateOccupiedSeats()) + "/" + room.getSeats() + " seats)");
+    public String getRoomFormatted() {
+        return room.getName() + " (" + (this.room.getSeats() - this.calculateOccupiedSeats()) + "/" + room.getSeats() + " seats)";
     }
     public int calculateOccupiedSeats() {
         int occupied = 0;

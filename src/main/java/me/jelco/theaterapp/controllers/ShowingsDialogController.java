@@ -18,19 +18,19 @@ import java.util.*;
 
 public class ShowingsDialogController implements Initializable {
     @FXML
-    TextField titleField;
+    private TextField titleField;
     @FXML
-    ComboBox<Room> roomSelector;
+    private ComboBox<Room> roomSelector;
     @FXML
-    DatePicker startDateField;
+    private DatePicker startDateField;
     @FXML
-    TextField startTimeField;
+    private TextField startTimeField;
     @FXML
-    DatePicker endDateField;
+    private DatePicker endDateField;
     @FXML
-    TextField endTimeField;
+    private TextField endTimeField;
     @FXML
-    Text errorLabel;
+    private Text errorLabel;
 
     private Database database;
     private Showing showing;

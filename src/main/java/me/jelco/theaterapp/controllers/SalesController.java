@@ -14,14 +14,14 @@ import java.net.*;
 import java.util.*;
 
 public class SalesController implements Initializable {
-    UserLogin userLogin;
-    User loggedInUser;
-    Database database;
-    Scene scene;
-    VBox layout;
+    private UserLogin userLogin;
+    private User loggedInUser;
+    private Database database;
+    private Scene scene;
+    private VBox layout;
 
     @FXML
-    TableView<Sale> salesTable;
+    private TableView<Sale> salesTable;
 
     public SalesController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         this.userLogin = userLogin;

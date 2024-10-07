@@ -17,18 +17,18 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class HomeController implements Initializable {
-    UserLogin userLogin;
-    User loggedInUser;
-    Database database;
-    Scene scene;
-    VBox layout;
+    private UserLogin userLogin;
+    private User loggedInUser;
+    private Database database;
+    private Scene scene;
+    private VBox layout;
 
     @FXML
-    Text welcomeText;
+    private Text welcomeText;
     @FXML
-    Text loggedinAsText;
+    private Text loggedinAsText;
     @FXML
-    Text datetimeText;
+    private Text datetimeText;
 
     public HomeController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         this.userLogin = userLogin;

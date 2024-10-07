@@ -26,26 +26,26 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TicketsSelectorController implements Initializable {
-    UserLogin userLogin;
-    User loggedInUser;
-    Database database;
-    Scene scene;
-    VBox layout;
+    private UserLogin userLogin;
+    private User loggedInUser;
+    private Database database;
+    private Scene scene;
+    private VBox layout;
 
     private List<Seat> occupiedSeats = new ArrayList<>();
     private ObservableList<Seat> saleSeats = FXCollections.observableArrayList();
-    Showing selectedShowing;
+    private Showing selectedShowing;
 
     @FXML
-    Text selectedText;
+    private Text selectedText;
     @FXML
-    GridPane seatSelector;
+    private GridPane seatSelector;
     @FXML
-    ListView<Seat> seatList;
+    private ListView<Seat> seatList;
     @FXML
-    TextField customerInput;
+    private TextField customerInput;
     @FXML
-    Button sellButton;
+    private Button sellButton;
 
     public TicketsSelectorController(UserLogin userLogin, Database database, VBox layout, Showing showing) throws IOException {
         this.userLogin = userLogin;
@@ -149,7 +149,7 @@ public class TicketsSelectorController implements Initializable {
 
         return button;
     }
-    public void updateSellLabel() {
+    private void updateSellLabel() {
         int ticketSize = saleSeats.size();
         String customerName = customerInput.getText();
         sellButton.setDisable(ticketSize == 0 || customerName.isEmpty());

@@ -16,24 +16,24 @@ import java.net.*;
 import java.util.*;
 
 public class LoginController implements Initializable {
-    UserLogin userLogin;
-    Database database;
-    Scene scene;
-    VBox layout;
+    private UserLogin userLogin;
+    private Database database;
+    private Scene scene;
+    private VBox layout;
 
     @FXML
-    Text messageText;
+    private Text messageText;
     @FXML
-    TextField username;
+    private TextField username;
     @FXML
-    TextField password;
+    private TextField password;
     @FXML
-    Button loginButton;
+    private Button loginButton;
 
-    Button homeButton;
-    Button ticketsButton;
-    Button showingsButton;
-    Button salesButton;
+    private Button homeButton;
+    private Button ticketsButton;
+    private Button showingsButton;
+    private Button salesButton;
 
     public LoginController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         this.userLogin = userLogin;

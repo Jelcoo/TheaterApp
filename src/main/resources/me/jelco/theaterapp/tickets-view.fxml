@@ -20,17 +20,17 @@
                 </TableColumn>
                 <TableColumn text="Start">
                     <cellValueFactory>
-                        <PropertyValueFactory property="start" />
+                        <PropertyValueFactory property="formattedStartTime" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="End">
                     <cellValueFactory>
-                        <PropertyValueFactory property="end" />
+                        <PropertyValueFactory property="formattedEndTime" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Room">
                     <cellValueFactory>
-                        <PropertyValueFactory property="room" />
+                        <PropertyValueFactory property="roomFormatted" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>

@@ -15,7 +15,7 @@
             <columns>
                 <TableColumn text="Date/time">
                     <cellValueFactory>
-                        <PropertyValueFactory property="date" />
+                        <PropertyValueFactory property="soldDate" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="# of tickets">
@@ -30,7 +30,7 @@
                 </TableColumn>
                 <TableColumn text="Showing">
                     <cellValueFactory>
-                        <PropertyValueFactory property="showing" />
+                        <PropertyValueFactory property="showingTitle" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>

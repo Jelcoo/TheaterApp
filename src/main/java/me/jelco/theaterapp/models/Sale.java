@@ -1,6 +1,5 @@
 package me.jelco.theaterapp.models;
 
-import javafx.beans.property.*;
 import me.jelco.theaterapp.tools.*;
 
 import java.io.*;
@@ -20,19 +19,19 @@ public class Sale implements Serializable {
         this.seats = seats;
     }
 
-    public StringProperty showingProperty() {
-        return new SimpleStringProperty(showingTitle);
+    public String getShowingTitle() {
+        return showingTitle;
     }
-    public StringProperty dateProperty() {
-        return new SimpleStringProperty(FormattingTools.formatDateTime(soldDate));
+    public String getSoldDate() {
+        return FormattingTools.formatDateTime(soldDate);
     }
-    public StringProperty customerProperty() {
-        return new SimpleStringProperty(customer);
+    public String getCustomer() {
+        return customer;
     }
     public List<Seat> getTickets() {
         return seats;
     }
-    public StringProperty ticketsCountProperty() {
-        return new SimpleStringProperty(String.valueOf(seats.size()));
+    public String getTicketsCount() {
+        return String.valueOf(seats.size());
     }
 }

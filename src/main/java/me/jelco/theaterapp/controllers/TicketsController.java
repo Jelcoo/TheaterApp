@@ -17,20 +17,20 @@ import java.net.*;
 import java.util.*;
 
 public class TicketsController implements Initializable {
-    UserLogin userLogin;
-    User loggedInUser;
-    Database database;
-    Scene scene;
-    VBox layout;
+    private UserLogin userLogin;
+    private User loggedInUser;
+    private Database database;
+    private Scene scene;
+    private VBox layout;
 
-    Showing selectedShowing;
+    private Showing selectedShowing;
 
     @FXML
-    TableView<Showing> showsTable;
+    private TableView<Showing> showsTable;
     @FXML
-    Button selectButton;
+    private Button selectButton;
     @FXML
-    Text selectedText;
+    private Text selectedText;
 
     public TicketsController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         this.userLogin = userLogin;
