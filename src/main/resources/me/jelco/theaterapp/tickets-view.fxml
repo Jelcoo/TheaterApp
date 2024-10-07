@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="610.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
@@ -11,33 +10,7 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <TableView fx:id="showsTable" layoutX="35.0" layoutY="65.0" prefHeight="475.0" prefWidth="928.0">
-            <columns>
-                <TableColumn text="Title">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="title" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="Start">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="formattedStartTime" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="End">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="formattedEndTime" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn text="Room">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="roomFormatted" />
-                    </cellValueFactory>
-                </TableColumn>
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-        </TableView>
+        <fx:include source="showings-table.fxml" fx:id="showsTable" />
         <Button fx:id="selectButton" disable="true" layoutX="35.0" layoutY="555.0" mnemonicParsing="false" onAction="#onSelectClick" text="Select seat(s)">
             <font>
                 <Font size="16.0" />
