@@ -32,16 +32,16 @@ public class ShowingsDialogController implements Initializable {
     @FXML
     private Text errorLabel;
 
-    private Database database;
+    private final Database database;
     private Showing showing;
-    public Showing getShowing() {
-        return showing;
-    }
-
 
     public ShowingsDialogController(Database database, Showing showing) {
         this.database = database;
         this.showing = showing;
+    }
+
+    public Showing getShowing() {
+        return showing;
     }
 
     public void show() throws IOException {
@@ -81,30 +81,57 @@ public class ShowingsDialogController implements Initializable {
 
     private Showing constructShowing() {
         String title = titleField.getText();
-        if (!isValidTitle(title)) { UITools.setError(errorLabel, "The title cannot be empty"); return null; }
+        if (!isValidTitle(title)) {
+            UITools.setError(errorLabel, "The title cannot be empty");
+            return null;
+        }
 
         LocalDate startDate = startDateField.getValue();
-        if (startDate == null) { UITools.setError(errorLabel, "The start date is not valid"); return null; }
+        if (startDate == null) {
+            UITools.setError(errorLabel, "The start date is not valid");
+            return null;
+        }
 
         String startTimeValue = startTimeField.getText();
-        if (!isValidTime(startTimeValue)) { UITools.setError(errorLabel, "The start time is not valid"); return null; }
+        if (!isValidTime(startTimeValue)) {
+            UITools.setError(errorLabel, "The start time is not valid");
+            return null;
+        }
         LocalTime startTime = formatTime(startTimeValue);
 
         LocalDate endDate = endDateField.getValue();
-        if (endDate == null) { UITools.setError(errorLabel, "The end date is not valid"); return null; }
+        if (endDate == null) {
+            UITools.setError(errorLabel, "The end date is not valid");
+            return null;
+        }
 
         String endTimeValue = endTimeField.getText();
-        if (!isValidTime(endTimeValue)) { UITools.setError(errorLabel, "The end time is not valid"); return null; }
+        if (!isValidTime(endTimeValue)) {
+            UITools.setError(errorLabel, "The end time is not valid");
+            return null;
+        }
         LocalTime endTime = formatTime(endTimeValue);
 
         LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
         LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-        if (endDateTime.isBefore(startDateTime)) { UITools.setError(errorLabel, "The end date/time is before the start date/time"); return null; }
-        if (endDateTime.equals(startDateTime)) { UITools.setError(errorLabel, "The end date/time cannot be the same as start date/time"); return null; }
+        if (endDateTime.isBefore(startDateTime)) {
+            UITools.setError(errorLabel, "The end date/time is before the start date/time");
+            return null;
+        }
+        if (endDateTime.equals(startDateTime)) {
+            UITools.setError(errorLabel, "The end date/time cannot be the same as start date/time");
+            return null;
+        }
 
         Room room = roomSelector.getValue();
-        if (room == null) { UITools.setError(errorLabel, "The room is not valid"); return null; }
-        if (room.getSeats() < showing.calculateOccupiedSeats()) { UITools.setError(errorLabel, "Selected room is smaller than sold tickets"); return null; }
+        if (room == null) {
+            UITools.setError(errorLabel, "The room is not valid");
+            return null;
+        }
+        if (room.getSeats() < showing.calculateOccupiedSeats()) {
+            UITools.setError(errorLabel, "Selected room is smaller than sold tickets");
+            return null;
+        }
 
         return new Showing(title, startDateTime, endDateTime, room, showing != null ? showing.getSales() : new ArrayList<>());
     }
@@ -112,9 +139,11 @@ public class ShowingsDialogController implements Initializable {
     private boolean isValidTitle(String title) {
         return !title.isEmpty();
     }
+
     private boolean isValidTime(String time) {
         return time.matches("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
     }
+
     private LocalTime formatTime(String time) {
         return LocalTime.parse(time);
     }

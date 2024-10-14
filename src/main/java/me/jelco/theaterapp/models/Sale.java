@@ -7,10 +7,10 @@ import java.time.*;
 import java.util.*;
 
 public class Sale implements Serializable {
-    private String showingTitle;
-    private LocalDateTime soldDate;
-    private String customer;
-    private List<Seat> seats;
+    private final String showingTitle;
+    private final LocalDateTime soldDate;
+    private final String customer;
+    private final List<Seat> seats;
 
     public Sale(String showingTitle, LocalDateTime soldDate, String customer, List<Seat> seats) {
         this.showingTitle = showingTitle;
@@ -22,15 +22,19 @@ public class Sale implements Serializable {
     public String getShowingTitle() {
         return showingTitle;
     }
+
     public String getSoldDate() {
         return FormattingTools.formatDateTime(soldDate);
     }
+
     public String getCustomer() {
         return customer;
     }
+
     public List<Seat> getTickets() {
         return seats;
     }
+
     public String getTicketsCount() {
         return String.valueOf(seats.size());
     }

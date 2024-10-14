@@ -3,8 +3,8 @@ package me.jelco.theaterapp.models;
 import java.io.*;
 
 public class Seat implements Serializable {
-    private int row;
-    private int seat;
+    private final int row;
+    private final int seat;
 
     public Seat(int row, int seat) {
         this.row = row;
@@ -14,6 +14,7 @@ public class Seat implements Serializable {
     public int getRow() {
         return row;
     }
+
     public int getSeat() {
         return seat;
     }

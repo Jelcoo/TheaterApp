@@ -1,11 +1,11 @@
 package me.jelco.theaterapp.models;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Room implements Serializable {
-    private String name;
-    private int rows;
-    private int columns;
+    private final String name;
+    private final int rows;
+    private final int columns;
 
     public Room(String name, int rows, int columns) {
         this.name = name;
@@ -16,12 +16,15 @@ public class Room implements Serializable {
     public String getName() {
         return name;
     }
+
     public int getRows() {
         return rows;
     }
+
     public int getColumns() {
         return columns;
     }
+
     public int getSeats() {
         return rows * columns;
     }

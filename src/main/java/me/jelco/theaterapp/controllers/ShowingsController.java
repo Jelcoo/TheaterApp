@@ -51,10 +51,12 @@ public class ShowingsController extends BaseController implements Initializable 
     public void onAddClick(ActionEvent event) {
         showEditDialog(null);
     }
+
     public void onEditClick(ActionEvent event) {
         if (selectedShowing == null) return;
         showEditDialog(selectedShowing);
     }
+
     public void onDeleteClick(ActionEvent event) {
         if (selectedShowing == null) return;
         if (!selectedShowing.getSales().isEmpty()) {

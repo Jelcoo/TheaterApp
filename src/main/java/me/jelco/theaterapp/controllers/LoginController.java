@@ -84,6 +84,7 @@ public class LoginController extends BaseController implements Initializable {
             toggleButton(salesButton, false);
         }
     }
+
     private void toggleButton(Button button, boolean toggle) {
         button.setVisible(toggle);
         button.setManaged(toggle);

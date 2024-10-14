@@ -9,6 +9,7 @@ public class FormattingTools {
 
         return time.format(formatter);
     }
+
     public static String formatTime(LocalDateTime time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 

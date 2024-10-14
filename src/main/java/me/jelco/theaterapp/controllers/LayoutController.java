@@ -10,8 +10,8 @@ import java.net.*;
 import java.util.*;
 
 public class LayoutController implements Initializable {
-    private UserLogin userLogin;
-    private Database database;
+    private final UserLogin userLogin;
+    private final Database database;
 
     @FXML
     private VBox layout;

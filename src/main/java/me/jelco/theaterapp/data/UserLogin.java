@@ -17,6 +17,10 @@ public class UserLogin {
         return loggedInUser;
     }
 
+    private void setLoggedInUser(User user) {
+        loggedInUser = user;
+    }
+
     public User validateUser(String username, String password) {
         List<User> users = database.getUsers();
         for (User user : users) {
@@ -26,9 +30,6 @@ public class UserLogin {
             }
         }
         return null;
-    }
-    private void setLoggedInUser(User user) {
-        loggedInUser = user;
     }
 
     public void logoutUser() {

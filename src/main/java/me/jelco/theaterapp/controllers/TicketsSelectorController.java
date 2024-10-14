@@ -18,9 +18,9 @@ import java.time.*;
 import java.util.*;
 
 public class TicketsSelectorController extends BaseController implements Initializable {
-    private List<Seat> occupiedSeats = new ArrayList<>();
-    private ObservableList<Seat> saleSeats = FXCollections.observableArrayList();
-    private Showing selectedShowing;
+    private final List<Seat> occupiedSeats = new ArrayList<>();
+    private final ObservableList<Seat> saleSeats = FXCollections.observableArrayList();
+    private final Showing selectedShowing;
 
     @FXML
     private Text selectedText;
@@ -57,6 +57,7 @@ public class TicketsSelectorController extends BaseController implements Initial
         initSeatSelector(roomRows, roomColumns);
         updateSellLabel();
     }
+
     private void initSeatSelector(int roomRows, int roomColumns) {
         setGridSize(roomRows, roomColumns + 1);
         // Add button to all grid fields
@@ -72,6 +73,7 @@ public class TicketsSelectorController extends BaseController implements Initial
             }
         }
     }
+
     private void setGridSize(int rows, int cols) {
         seatSelector.getRowConstraints().clear();
         seatSelector.getColumnConstraints().clear();
@@ -88,6 +90,7 @@ public class TicketsSelectorController extends BaseController implements Initial
             seatSelector.getColumnConstraints().add(columnConstraints);
         }
     }
+
     private boolean seatIsOccupied(Seat seat) {
         for (Seat occupiedSeat : occupiedSeats) {
             if (occupiedSeat.getRow() == seat.getRow() && occupiedSeat.getSeat() == seat.getSeat()) {
@@ -96,6 +99,7 @@ public class TicketsSelectorController extends BaseController implements Initial
         }
         return false;
     }
+
     private Button getSeatButton(int seatRow, int seatNumber) {
         Seat buttonSeat = new Seat(seatRow + 1, seatNumber);
 
@@ -125,6 +129,7 @@ public class TicketsSelectorController extends BaseController implements Initial
 
         return button;
     }
+
     private void updateSellLabel() {
         int ticketSize = saleSeats.size();
         String customerName = customerInput.getText();
@@ -146,6 +151,7 @@ public class TicketsSelectorController extends BaseController implements Initial
     public void onCancelClick(ActionEvent event) throws IOException {
         returnToHome();
     }
+
     private void returnToHome() throws IOException {
         TicketsController ticketsController = new TicketsController(userLogin, database, layout);
         ticketsController.show();

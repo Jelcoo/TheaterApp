@@ -7,18 +7,9 @@ import java.time.*;
 import java.util.*;
 
 public class Database implements Serializable {
-    private List<User> users = new ArrayList<>();
-    public List<User> getUsers() {
-        return users;
-    }
-    private List<Showing> showings = new ArrayList<>();
-    public List<Showing> getShowings() {
-        return showings;
-    }
-    private List<Room> rooms = new ArrayList<>();
-    public List<Room> getRooms() {
-        return rooms;
-    }
+    private final List<User> users = new ArrayList<>();
+    private final List<Showing> showings = new ArrayList<>();
+    private final List<Room> rooms = new ArrayList<>();
 
     public Database() {
         // users
@@ -61,9 +52,22 @@ public class Database implements Serializable {
         showings.add(rm1005);
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Showing> getShowings() {
+        return showings;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
     public void createShowing(Showing showing) {
         showings.add(showing);
     }
+
     public void deleteShowing(Showing showing) {
         showings.remove(showing);
     }
