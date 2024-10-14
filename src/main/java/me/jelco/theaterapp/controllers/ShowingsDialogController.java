@@ -128,7 +128,7 @@ public class ShowingsDialogController implements Initializable {
             UITools.setError(errorLabel, "The room is not valid");
             return null;
         }
-        if (room.getSeats() < showing.calculateOccupiedSeats()) {
+        if (showing != null && room.getSeats() < showing.calculateOccupiedSeats()) {
             UITools.setError(errorLabel, "Selected room is smaller than sold tickets");
             return null;
         }
