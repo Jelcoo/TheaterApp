@@ -8,6 +8,7 @@ import javafx.scene.text.*;
 import javafx.stage.*;
 import me.jelco.theaterapp.*;
 import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.exceptions.*;
 import me.jelco.theaterapp.models.*;
 import me.jelco.theaterapp.tools.*;
 
@@ -80,71 +81,63 @@ public class ShowingsDialogController implements Initializable {
     }
 
     private Showing constructShowing() {
-        String title = titleField.getText();
-        if (!isValidTitle(title)) {
-            UITools.setError(errorLabel, "The title cannot be empty");
-            return null;
-        }
+        try {
+            String title = getTitle();
+            LocalDate startDate = getDate(startDateField);
+            LocalTime startTime = getTime(startTimeField);
+            LocalDate endDate = getDate(endDateField);
+            LocalTime endTime = getTime(endTimeField);
+            Room room = getRoom();
 
-        LocalDate startDate = startDateField.getValue();
-        if (startDate == null) {
-            UITools.setError(errorLabel, "The start date is not valid");
-            return null;
-        }
+            LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+            LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+            if (endDateTime.isBefore(startDateTime)) {
+                throw new ValidationException("The end date/time is before the start date/time");
+            }
+            if (endDateTime.equals(startDateTime)) {
+                throw new ValidationException("The end date/time cannot be the same as start date/time");
+            }
 
-        String startTimeValue = startTimeField.getText();
-        if (!isValidTime(startTimeValue)) {
-            UITools.setError(errorLabel, "The start time is not valid");
+            return new Showing(title, startDateTime, endDateTime, room, showing != null ? showing.getSales() : new ArrayList<>());
+        } catch (ValidationException e) {
+            UITools.setError(errorLabel, e.getMessage());
             return null;
         }
-        LocalTime startTime = formatTime(startTimeValue);
-
-        LocalDate endDate = endDateField.getValue();
-        if (endDate == null) {
-            UITools.setError(errorLabel, "The end date is not valid");
-            return null;
-        }
-
-        String endTimeValue = endTimeField.getText();
-        if (!isValidTime(endTimeValue)) {
-            UITools.setError(errorLabel, "The end time is not valid");
-            return null;
-        }
-        LocalTime endTime = formatTime(endTimeValue);
-
-        LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
-        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-        if (endDateTime.isBefore(startDateTime)) {
-            UITools.setError(errorLabel, "The end date/time is before the start date/time");
-            return null;
-        }
-        if (endDateTime.equals(startDateTime)) {
-            UITools.setError(errorLabel, "The end date/time cannot be the same as start date/time");
-            return null;
-        }
-
-        Room room = roomSelector.getValue();
-        if (room == null) {
-            UITools.setError(errorLabel, "The room is not valid");
-            return null;
-        }
-        if (showing != null && room.getSeats() < showing.calculateOccupiedSeats()) {
-            UITools.setError(errorLabel, "Selected room is smaller than sold tickets");
-            return null;
-        }
-
-        return new Showing(title, startDateTime, endDateTime, room, showing != null ? showing.getSales() : new ArrayList<>());
     }
 
-    private boolean isValidTitle(String title) {
-        return !title.isEmpty();
+    private String getTitle() throws ValidationException {
+        String title = titleField.getText();
+        if (title.isEmpty()) {
+            throw new ValidationException("The title cannot be empty");
+        }
+        return title;
+    }
+    private LocalDate getDate(DatePicker datePicker) throws ValidationException {
+        LocalDate date = datePicker.getValue();
+        if (date == null) {
+            throw new ValidationException("Entered date is not valid");
+        }
+        return date;
+    }
+    private LocalTime getTime(TextField timeField) throws ValidationException {
+        String timeValue = timeField.getText();
+        if (!isValidTime(timeValue)) {
+            throw new ValidationException("Entered time is not valid");
+        }
+        return LocalTime.parse(timeValue);
+    }
+    private Room getRoom() throws ValidationException {
+        Room room = roomSelector.getValue();
+        if (room == null) {
+            throw new ValidationException("The room is not valid");
+        }
+        if (showing != null && room.getSeats() < showing.calculateOccupiedSeats()) {
+            throw new ValidationException("Selected room is smaller than sold tickets");
+        }
+        return room;
     }
 
     private boolean isValidTime(String time) {
         return time.matches("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
-    }
-
-    private LocalTime formatTime(String time) {
-        return LocalTime.parse(time);
     }
 }
