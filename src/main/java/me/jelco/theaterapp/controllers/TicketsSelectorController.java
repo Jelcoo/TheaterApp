@@ -1,29 +1,22 @@
 package me.jelco.theaterapp.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.collections.*;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
-import me.jelco.theaterapp.TheaterApplication;
-import me.jelco.theaterapp.data.Database;
-import me.jelco.theaterapp.data.UserLogin;
+import javafx.scene.paint.*;
+import javafx.scene.text.*;
+import me.jelco.theaterapp.data.*;
 import me.jelco.theaterapp.models.*;
-import me.jelco.theaterapp.tools.FormattingTools;
+import me.jelco.theaterapp.tools.*;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.net.*;
+import java.time.*;
+import java.util.*;
 
 public class TicketsSelectorController extends BaseController implements Initializable {
     private Scene scene;
@@ -47,9 +40,7 @@ public class TicketsSelectorController extends BaseController implements Initial
         super(userLogin, database, layout);
         this.selectedShowing = showing;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("tickets-selector-view.fxml"));
-        fxmlLoader.setController(this);
-        this.scene = new Scene(fxmlLoader.load(), 1000, 700);
+        this.scene = UITools.loadScene(this, "tickets-selector-view.fxml");
     }
 
     public void show() {

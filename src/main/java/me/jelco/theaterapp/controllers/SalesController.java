@@ -5,9 +5,9 @@ import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import me.jelco.theaterapp.*;
 import me.jelco.theaterapp.data.*;
 import me.jelco.theaterapp.models.*;
+import me.jelco.theaterapp.tools.*;
 
 import java.io.*;
 import java.net.*;
@@ -22,9 +22,7 @@ public class SalesController extends BaseController implements Initializable {
     public SalesController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         super(userLogin, database, layout);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("sales-view.fxml"));
-        fxmlLoader.setController(this);
-        this.scene = new Scene(fxmlLoader.load(), 1000, 700);
+        this.scene = UITools.loadScene(this, "sales-view.fxml");
     }
 
     public void show() {

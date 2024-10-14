@@ -7,9 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
-import me.jelco.theaterapp.*;
 import me.jelco.theaterapp.data.*;
 import me.jelco.theaterapp.models.*;
+import me.jelco.theaterapp.tools.*;
 
 import java.io.*;
 import java.net.*;
@@ -35,9 +35,7 @@ public class LoginController extends BaseController implements Initializable {
     public LoginController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         super(userLogin, database, layout);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("login-view.fxml"));
-        fxmlLoader.setController(this);
-        this.scene = new Scene(fxmlLoader.load(), 1000, 700);
+        this.scene = UITools.loadScene(this, "login-view.fxml");
     }
 
     public void show() {

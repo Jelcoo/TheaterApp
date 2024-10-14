@@ -5,8 +5,8 @@ import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
-import me.jelco.theaterapp.*;
 import me.jelco.theaterapp.data.*;
+import me.jelco.theaterapp.tools.*;
 
 import java.io.*;
 import java.net.*;
@@ -28,9 +28,7 @@ public class HomeController extends BaseController implements Initializable {
     public HomeController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         super(userLogin, database, layout);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("home-view.fxml"));
-        fxmlLoader.setController(this);
-        this.scene = new Scene(fxmlLoader.load(), 1000, 700);
+        this.scene = UITools.loadScene(this, "home-view.fxml");
     }
 
     public void show() {
