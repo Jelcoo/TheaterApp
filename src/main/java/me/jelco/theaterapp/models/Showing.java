@@ -7,11 +7,11 @@ import java.time.*;
 import java.util.*;
 
 public class Showing implements Serializable {
+    private final List<Sale> sales;
     private String title;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Room room;
-    private final List<Sale> sales;
 
     public Showing(String title, LocalDateTime startTime, LocalDateTime endTime, Room room, List<Sale> sales) {
         this.title = title;

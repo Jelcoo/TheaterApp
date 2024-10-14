@@ -18,6 +18,7 @@ import java.time.*;
 import java.util.*;
 
 public class ShowingsDialogController implements Initializable {
+    private final Database database;
     @FXML
     private TextField titleField;
     @FXML
@@ -32,8 +33,6 @@ public class ShowingsDialogController implements Initializable {
     private TextField endTimeField;
     @FXML
     private Text errorLabel;
-
-    private final Database database;
     private Showing showing;
 
     public ShowingsDialogController(Database database, Showing showing) {
@@ -112,6 +111,7 @@ public class ShowingsDialogController implements Initializable {
         }
         return title;
     }
+
     private LocalDate getDate(DatePicker datePicker) throws ValidationException {
         LocalDate date = datePicker.getValue();
         if (date == null) {
@@ -119,6 +119,7 @@ public class ShowingsDialogController implements Initializable {
         }
         return date;
     }
+
     private LocalTime getTime(TextField timeField) throws ValidationException {
         String timeValue = timeField.getText();
         if (!isValidTime(timeValue)) {
@@ -126,6 +127,7 @@ public class ShowingsDialogController implements Initializable {
         }
         return LocalTime.parse(timeValue);
     }
+
     private Room getRoom() throws ValidationException {
         Room room = roomSelector.getValue();
         if (room == null) {
