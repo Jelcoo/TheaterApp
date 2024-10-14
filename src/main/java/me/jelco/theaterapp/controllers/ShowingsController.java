@@ -74,6 +74,7 @@ public class ShowingsController extends BaseController implements Initializable 
             showingsDialogController.show();
 
             Showing dialogShowing = showingsDialogController.getShowing();
+            // Add new showing if it doesn't exist, else replace by index
             if (showing == null && dialogShowing != null) {
                 showings.add(dialogShowing);
                 database.createShowing(dialogShowing);
