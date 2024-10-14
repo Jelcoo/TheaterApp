@@ -3,7 +3,6 @@ package me.jelco.theaterapp.controllers;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
@@ -16,8 +15,6 @@ import java.net.*;
 import java.util.*;
 
 public class TicketsController extends BaseController implements Initializable {
-    private Scene scene;
-
     private Showing selectedShowing;
 
     @FXML
@@ -31,12 +28,6 @@ public class TicketsController extends BaseController implements Initializable {
         super(userLogin, database, layout);
 
         this.scene = UITools.loadScene(this, "tickets-view.fxml");
-    }
-
-    public void show() {
-        if (layout.getChildren().size() > 1)
-            layout.getChildren().remove(1);
-        layout.getChildren().add(scene.getRoot());
     }
 
     @Override

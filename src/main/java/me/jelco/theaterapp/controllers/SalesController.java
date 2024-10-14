@@ -2,7 +2,6 @@ package me.jelco.theaterapp.controllers;
 
 import javafx.collections.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import me.jelco.theaterapp.data.*;
@@ -14,8 +13,6 @@ import java.net.*;
 import java.util.*;
 
 public class SalesController extends BaseController implements Initializable {
-    private Scene scene;
-
     @FXML
     private TableView<Sale> salesTable;
 
@@ -23,12 +20,6 @@ public class SalesController extends BaseController implements Initializable {
         super(userLogin, database, layout);
 
         this.scene = UITools.loadScene(this, "sales-view.fxml");
-    }
-
-    public void show() {
-        if (layout.getChildren().size() > 1)
-            layout.getChildren().remove(1);
-        layout.getChildren().add(scene.getRoot());
     }
 
     @Override

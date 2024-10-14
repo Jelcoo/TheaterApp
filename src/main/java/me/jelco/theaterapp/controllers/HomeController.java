@@ -2,7 +2,6 @@ package me.jelco.theaterapp.controllers;
 
 import javafx.event.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import me.jelco.theaterapp.data.*;
@@ -16,8 +15,6 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class HomeController extends BaseController implements Initializable {
-    private Scene scene;
-
     @FXML
     private Text welcomeText;
     @FXML
@@ -29,12 +26,6 @@ public class HomeController extends BaseController implements Initializable {
         super(userLogin, database, layout);
 
         this.scene = UITools.loadScene(this, "home-view.fxml");
-    }
-
-    public void show() {
-        if (layout.getChildren().size() > 1)
-            layout.getChildren().remove(1);
-        layout.getChildren().add(scene.getRoot());
     }
 
     @Override

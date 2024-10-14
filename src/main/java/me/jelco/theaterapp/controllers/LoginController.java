@@ -2,7 +2,6 @@ package me.jelco.theaterapp.controllers;
 
 import javafx.event.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
@@ -16,8 +15,6 @@ import java.net.*;
 import java.util.*;
 
 public class LoginController extends BaseController implements Initializable {
-    private Scene scene;
-
     @FXML
     private Text messageText;
     @FXML
@@ -38,21 +35,15 @@ public class LoginController extends BaseController implements Initializable {
         this.scene = UITools.loadScene(this, "login-view.fxml");
     }
 
-    public void show() {
-        if (layout.getChildren().size() > 1)
-            layout.getChildren().remove(1);
-        layout.getChildren().add(scene.getRoot());
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         // Listen to ENTER key for login
         layout.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 loginButton.fire();
             }
         });
-    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
         homeButton = (Button) this.layout.lookup("#homeButton");
         ticketsButton = (Button) this.layout.lookup("#ticketsButton");
         showingsButton = (Button) this.layout.lookup("#showingsButton");
