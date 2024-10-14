@@ -25,12 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TicketsSelectorController implements Initializable {
-    private UserLogin userLogin;
-    private User loggedInUser;
-    private Database database;
+public class TicketsSelectorController extends BaseController implements Initializable {
     private Scene scene;
-    private VBox layout;
 
     private List<Seat> occupiedSeats = new ArrayList<>();
     private ObservableList<Seat> saleSeats = FXCollections.observableArrayList();
@@ -48,12 +44,8 @@ public class TicketsSelectorController implements Initializable {
     private Button sellButton;
 
     public TicketsSelectorController(UserLogin userLogin, Database database, VBox layout, Showing showing) throws IOException {
-        this.userLogin = userLogin;
-        this.database = database;
-        this.layout = layout;
+        super(userLogin, database, layout);
         this.selectedShowing = showing;
-
-        this.loggedInUser = userLogin.getLoggedInUser();
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("tickets-selector-view.fxml"));
         fxmlLoader.setController(this);

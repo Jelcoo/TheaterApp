@@ -16,12 +16,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class ShowingsController implements Initializable {
-    private UserLogin userLogin;
-    private User loggedInUser;
-    private Database database;
+public class ShowingsController extends BaseController implements Initializable {
     private Scene scene;
-    private VBox layout;
 
     private ObservableList<Showing> showings;
     private Showing selectedShowing;
@@ -36,11 +32,7 @@ public class ShowingsController implements Initializable {
     private Text errorLabel;
 
     public ShowingsController(UserLogin userLogin, Database database, VBox layout) throws IOException {
-        this.userLogin = userLogin;
-        this.database = database;
-        this.layout = layout;
-
-        this.loggedInUser = userLogin.getLoggedInUser();
+        super(userLogin, database, layout);
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("showings-view.fxml"));
         fxmlLoader.setController(this);

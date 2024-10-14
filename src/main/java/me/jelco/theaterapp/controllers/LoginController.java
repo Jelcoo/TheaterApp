@@ -15,11 +15,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class LoginController implements Initializable {
-    private UserLogin userLogin;
-    private Database database;
+public class LoginController extends BaseController implements Initializable {
     private Scene scene;
-    private VBox layout;
 
     @FXML
     private Text messageText;
@@ -36,9 +33,7 @@ public class LoginController implements Initializable {
     private Button salesButton;
 
     public LoginController(UserLogin userLogin, Database database, VBox layout) throws IOException {
-        this.userLogin = userLogin;
-        this.database = database;
-        this.layout = layout;
+        super(userLogin, database, layout);
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("login-view.fxml"));
         fxmlLoader.setController(this);
