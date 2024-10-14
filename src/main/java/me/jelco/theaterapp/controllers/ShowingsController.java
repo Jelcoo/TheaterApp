@@ -58,6 +58,7 @@ public class ShowingsController implements Initializable {
         showings = FXCollections.observableArrayList(database.getShowings());
         showsTable.setItems(showings);
 
+        // Listen for selected row change
         showsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 editButton.setDisable(false);

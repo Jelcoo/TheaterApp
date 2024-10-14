@@ -53,6 +53,7 @@ public class HomeController implements Initializable {
         welcomeText.setText("Welcome " + loggedInUser.getUsername());
         loggedinAsText.setText("You are logged in as " + loggedInUser.getRole());
 
+        // Create clock scheduler
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(() -> {
             LocalDateTime now = LocalDateTime.now();

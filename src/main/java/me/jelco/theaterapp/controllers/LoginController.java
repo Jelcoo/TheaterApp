@@ -50,6 +50,7 @@ public class LoginController implements Initializable {
             layout.getChildren().remove(1);
         layout.getChildren().add(scene.getRoot());
 
+        // Listen to ENTER key for login
         layout.setOnKeyReleased(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 loginButton.fire();

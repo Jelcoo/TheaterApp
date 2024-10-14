@@ -55,6 +55,7 @@ public class TicketsController implements Initializable {
         ObservableList<Showing> showings = FXCollections.observableArrayList(database.getShowings());
         showsTable.setItems(showings);
 
+        // Listen for selected row change
         showsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 selectButton.setDisable(false);

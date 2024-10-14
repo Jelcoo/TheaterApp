@@ -85,6 +85,7 @@ public class TicketsSelectorController implements Initializable {
     }
     private void initSeatSelector(int roomRows, int roomColumns) {
         setGridSize(roomRows, roomColumns + 1);
+        // Add button to all grid fields
         for (int i = 0; i < roomRows; i++) {
             for (int j = 0; j < roomColumns + 1; j++) {
                 if (j == 0) {
@@ -101,6 +102,7 @@ public class TicketsSelectorController implements Initializable {
         seatSelector.getRowConstraints().clear();
         seatSelector.getColumnConstraints().clear();
 
+        // Create specified amount of rows and cols
         for (int i = 0; i < rows; i++) {
             RowConstraints rowConstraints = new RowConstraints();
             rowConstraints.setPercentHeight(100.0 / rows);
