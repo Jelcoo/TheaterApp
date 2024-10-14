@@ -3,7 +3,6 @@ package me.jelco.theaterapp.controllers;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
-import javafx.stage.*;
 import me.jelco.theaterapp.data.*;
 
 import java.io.*;
@@ -13,15 +12,13 @@ import java.util.*;
 public class LayoutController implements Initializable {
     private UserLogin userLogin;
     private Database database;
-    private Stage stage;
 
     @FXML
     private VBox layout;
 
-    public LayoutController(UserLogin userLogin, Database database, Stage stage) {
+    public LayoutController(UserLogin userLogin, Database database) {
         this.userLogin = userLogin;
         this.database = database;
-        this.stage = stage;
     }
 
     public void onHomeClick(ActionEvent actionEvent) throws IOException {

@@ -20,7 +20,7 @@ public class TheaterApplication extends Application {
         userLogin = new UserLogin(database);
 
         FXMLLoader fxmlLoader = new FXMLLoader(TheaterApplication.class.getResource("layout.fxml"));
-        fxmlLoader.setController(new LayoutController(userLogin, database, stage));
+        fxmlLoader.setController(new LayoutController(userLogin, database));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
