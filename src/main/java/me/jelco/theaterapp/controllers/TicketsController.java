@@ -16,6 +16,7 @@ import java.util.*;
 
 public class TicketsController extends BaseController implements Initializable {
     private Showing selectedShowing;
+    private ObservableList<Showing> allShowings;
 
     @FXML
     private TableView<Showing> showsTable;
@@ -23,6 +24,8 @@ public class TicketsController extends BaseController implements Initializable {
     private Button selectButton;
     @FXML
     private Text selectedText;
+    @FXML
+    private TextField searchInput;
 
     public TicketsController(UserLogin userLogin, Database database, VBox layout) throws IOException {
         super(userLogin, database, layout);
@@ -32,9 +35,13 @@ public class TicketsController extends BaseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<Showing> showings = FXCollections.observableArrayList(database.getShowings());
-        showsTable.setItems(showings);
+        allShowings = FXCollections.observableArrayList(database.getShowings());
+        showsTable.setItems(allShowings);
 
+        addSelectionListener();
+        addSearchListener();
+    }
+    private void addSelectionListener() {
         // Listen for selected row change
         showsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -44,9 +51,25 @@ public class TicketsController extends BaseController implements Initializable {
             }
         });
     }
+    private void addSearchListener() {
+        // Listen for search input
+        searchInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() < 3) {
+                showsTable.setItems(allShowings);
+                return;
+            }
+            ObservableList<Showing> matchedShowings = FXCollections.observableArrayList(new ArrayList<>());
+            for (Showing showing : allShowings) {
+                if (showing.getTitle().toLowerCase().contains(newValue.toLowerCase())) {
+                    matchedShowings.add(showing);
+                }
+            }
+            showsTable.setItems(matchedShowings);
+        });
+    }
 
     public void onSelectClick(ActionEvent event) throws IOException {
-        TicketsSelectorController ticketsSelectorController = new TicketsSelectorController(userLogin, database, layout, selectedShowing);
+        TicketSelectorController ticketsSelectorController = new TicketSelectorController(userLogin, database, layout, selectedShowing);
         ticketsSelectorController.show();
     }
 }

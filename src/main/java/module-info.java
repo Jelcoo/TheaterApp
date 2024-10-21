@@ -1,6 +1,7 @@
 module me.jelco.theaterapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     exports me.jelco.theaterapp;
     opens me.jelco.theaterapp to javafx.fxml;

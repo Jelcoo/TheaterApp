@@ -17,7 +17,7 @@ import java.net.*;
 import java.time.*;
 import java.util.*;
 
-public class TicketsSelectorController extends BaseController implements Initializable {
+public class TicketSelectorController extends BaseController implements Initializable {
     private final List<Seat> occupiedSeats = new ArrayList<>();
     private final ObservableList<Seat> saleSeats = FXCollections.observableArrayList();
     private final Showing selectedShowing;
@@ -33,7 +33,7 @@ public class TicketsSelectorController extends BaseController implements Initial
     @FXML
     private Button sellButton;
 
-    public TicketsSelectorController(UserLogin userLogin, Database database, VBox layout, Showing showing) throws IOException {
+    public TicketSelectorController(UserLogin userLogin, Database database, VBox layout, Showing showing) throws IOException {
         super(userLogin, database, layout);
         this.selectedShowing = showing;
 
@@ -144,8 +144,22 @@ public class TicketsSelectorController extends BaseController implements Initial
     public void onSellClick(ActionEvent event) throws IOException {
         String customerName = customerInput.getText();
         Sale sale = new Sale(selectedShowing.getTitle(), LocalDateTime.now(), customerName, saleSeats.stream().toList());
-        selectedShowing.addSale(sale);
+        if (!selectedShowing.getAgeLimited() || showAgeConfirm(sale)) {
+            selectedShowing.addSale(sale);
+        }
+
         returnToHome();
+    }
+
+    private boolean showAgeConfirm(Sale sale) {
+        try {
+            TicketSelectorDialogController ticketSelectorDialogController = new TicketSelectorDialogController(database, selectedShowing, sale);
+            ticketSelectorDialogController.show();
+
+            return ticketSelectorDialogController.getConfirmed();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void onCancelClick(ActionEvent event) throws IOException {

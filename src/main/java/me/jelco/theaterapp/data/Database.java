@@ -32,8 +32,8 @@ public class Database implements Serializable {
 
         // showings
         List<Sale> rm1004Sales = new ArrayList<>();
-        Showing rm1004 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00"), room1, rm1004Sales);
-        Showing rm1005 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00"), room1, new ArrayList<>());
+        Showing rm1004 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-04T14:00:00"), LocalDateTime.parse("2024-10-04T16:30:00"), room1, false, rm1004Sales);
+        Showing rm1005 = new Showing("Rebel Moon - Part Two: The Scargiver", LocalDateTime.parse("2024-10-05T20:00:00"), LocalDateTime.parse("2024-10-05T22:00:00"), room1, false, new ArrayList<>());
 
         // sales
         List<Seat> sale1Seats = new ArrayList<>();

@@ -24,6 +24,11 @@
                 <PropertyValueFactory property="roomFormatted" />
             </cellValueFactory>
         </TableColumn>
+        <TableColumn text="Age restricted?">
+            <cellValueFactory>
+                <PropertyValueFactory property="restrictedFormatted" />
+            </cellValueFactory>
+        </TableColumn>
     </columns>
     <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

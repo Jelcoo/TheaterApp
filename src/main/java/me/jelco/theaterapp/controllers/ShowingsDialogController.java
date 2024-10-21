@@ -33,6 +33,8 @@ public class ShowingsDialogController implements Initializable {
     private TextField endTimeField;
     @FXML
     private Text errorLabel;
+    @FXML
+    private CheckBox ageLimitCheckbox;
     private Showing showing;
 
     public ShowingsDialogController(Database database, Showing showing) {
@@ -67,6 +69,7 @@ public class ShowingsDialogController implements Initializable {
             startTimeField.setText(FormattingTools.formatTime(showing.getStartTime()));
             endDateField.setValue(showing.getEndTime().toLocalDate());
             endTimeField.setText(FormattingTools.formatTime(showing.getEndTime()));
+            ageLimitCheckbox.setSelected(showing.getAgeLimited());
         }
     }
 
@@ -87,6 +90,7 @@ public class ShowingsDialogController implements Initializable {
             LocalDate endDate = getDate(endDateField);
             LocalTime endTime = getTime(endTimeField);
             Room room = getRoom();
+            boolean ageLimited = getAgeLimited();
 
             LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
             LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
@@ -97,7 +101,7 @@ public class ShowingsDialogController implements Initializable {
                 throw new ValidationException("The end date/time cannot be the same as start date/time");
             }
 
-            return new Showing(title, startDateTime, endDateTime, room, showing != null ? showing.getSales() : new ArrayList<>());
+            return new Showing(title, startDateTime, endDateTime, room, ageLimited, showing != null ? showing.getSales() : new ArrayList<>());
         } catch (ValidationException e) {
             UITools.setError(errorLabel, e.getMessage());
             return null;
@@ -137,6 +141,10 @@ public class ShowingsDialogController implements Initializable {
             throw new ValidationException("Selected room is smaller than sold tickets");
         }
         return room;
+    }
+
+    private boolean getAgeLimited() {
+        return ageLimitCheckbox.isSelected();
     }
 
     private boolean isValidTime(String time) {
