@@ -47,7 +47,7 @@ public class IOTools {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", "*.csv"));
         fileChooser.setInitialFileName("showings.csv");
-        return fileChooser.showOpenDialog(new Stage());
+        return fileChooser.showSaveDialog(new Stage());
     }
     public static void writeToFile(File file, String content) {
         try (FileWriter writer = new FileWriter(file)) {
