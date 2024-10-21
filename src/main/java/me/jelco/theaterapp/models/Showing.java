@@ -12,12 +12,14 @@ public class Showing implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Room room;
+    private boolean ageLimited;
 
-    public Showing(String title, LocalDateTime startTime, LocalDateTime endTime, Room room, List<Sale> sales) {
+    public Showing(String title, LocalDateTime startTime, LocalDateTime endTime, Room room, boolean ageLimited, List<Sale> sales) {
         this.title = title;
         this.startTime = startTime;
         this.endTime = endTime;
         this.room = room;
+        this.ageLimited = ageLimited;
         this.sales = sales;
     }
 
@@ -71,6 +73,16 @@ public class Showing implements Serializable {
 
     public String getRoomFormatted() {
         return room.getName() + " (" + (this.room.getSeats() - this.calculateOccupiedSeats()) + "/" + room.getSeats() + " seats)";
+    }
+
+    public boolean getAgeLimited() {
+        return ageLimited;
+    }
+    public void setAgeLimited(boolean ageLimited) {
+        this.ageLimited = ageLimited;
+    }
+    public String getRestrictedFormatted() {
+        return ageLimited ? "Yes" : "No";
     }
 
     public int calculateOccupiedSeats() {

@@ -106,5 +106,9 @@ public class ShowingsController extends BaseController implements Initializable 
         if (!Objects.equals(oldShowing.getEndTime(), newShowing.getEndTime())) {
             selectedShowing.setEndTime(newShowing.getEndTime());
         }
+
+        if (!Objects.equals(oldShowing.getAgeLimited(), newShowing.getAgeLimited())) {
+            selectedShowing.setAgeLimited(newShowing.getAgeLimited());
+        }
     }
 }

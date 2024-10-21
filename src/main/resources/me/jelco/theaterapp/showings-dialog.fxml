@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane prefHeight="233.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="251.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
       <TextField fx:id="titleField" layoutX="14.0" layoutY="29.0" promptText="Title" />
@@ -15,7 +20,8 @@
       <Text layoutX="14.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End date &amp; time" />
       <DatePicker fx:id="endDateField" layoutX="14.0" layoutY="151.0" promptText="dd/mm/yyyy" />
       <TextField fx:id="endTimeField" layoutX="193.0" layoutY="151.0" prefHeight="25.0" prefWidth="93.0" promptText="hh:mm" />
-      <Button fx:id="saveButton" layoutX="16.0" layoutY="188.0" mnemonicParsing="false" onAction="#onSaveClick" text="Save" />
+      <Button fx:id="saveButton" layoutX="16.0" layoutY="208.0" mnemonicParsing="false" onAction="#onSaveClick" text="Save" />
       <Text fx:id="errorLabel" fill="RED" layoutX="62.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.66663106282545" />
+      <CheckBox fx:id="ageLimitCheckbox" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" text="This movie is age restricted" />
    </children>
 </AnchorPane>
