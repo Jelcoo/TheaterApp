@@ -68,6 +68,22 @@ public class ShowingsController extends BaseController implements Initializable 
         showings.remove(selectedShowing);
     }
 
+    public void onExportClick(ActionEvent event) throws IOException {
+        StringBuilder csvHeader = new StringBuilder("start datetime,end datetime,movie title,seats left");
+        for (Showing showing : showings) {
+            String csvString = FormattingTools.ShowingToCSV(showing);
+            csvHeader.append("\n").append(csvString);
+        }
+
+        File file = IOTools.pickFilepath();
+        if (file == null) {
+            return;
+        }
+
+        if (!file.exists()) file.createNewFile();
+        IOTools.writeToFile(file, csvHeader.toString());
+    }
+
     private void showEditDialog(Showing showing) {
         try {
             ShowingsDialogController showingsDialogController = new ShowingsDialogController(database, showing);

@@ -1,5 +1,6 @@
 package me.jelco.theaterapp.tools;
 
+import javafx.stage.*;
 import me.jelco.theaterapp.data.*;
 
 import java.io.*;
@@ -40,5 +41,22 @@ public class IOTools {
             System.out.println("Class not found while reading database: " + cnfe.getMessage());
         }
         return database;
+    }
+
+    public static File pickFilepath() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV File", "*.csv"));
+        fileChooser.setInitialFileName("showings.csv");
+        return fileChooser.showOpenDialog(new Stage());
+    }
+    public static void writeToFile(File file, String content) {
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(content);
+            System.out.println("Showings export done successfully.");
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("The file cannot be found: " + fnfe.getMessage());
+        } catch (IOException ioe) {
+            System.out.println("Error during writing showings export: " + ioe.getMessage());
+        }
     }
 }
